@@ -1,0 +1,71 @@
+package com.adaptris.core.drools;
+
+import org.drools.StatelessSession;
+
+import com.adaptris.annotation.MarshallingImperative;
+import com.adaptris.core.AdaptrisMessage;
+import com.adaptris.core.CoreException;
+import com.adaptris.core.ServiceException;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.adaptris.util.license.License;
+
+/**
+ * Stateless JBoss Rules Engine execution.
+ *
+ * <p>
+ * Requires an ENTERPRISE license.
+ * </p>
+ ** <p>
+ * In the adapter configuration file this class is aliased as <b>drools-stateless-rule-service</b> which is the preferred alternative to the
+ * fully qualified classname when building your configuration.
+ * </p>
+ 
+ * @author lchan
+ * @author $Author: lchan $
+ */
+@XStreamAlias("drools-stateless-rule-service")
+@MarshallingImperative(mapTo = "drools-stateless-rule-service", transientFields = {})
+public class StatelessRuleService extends RuleServiceImpl {
+
+  public StatelessRuleService() {
+  }
+
+  /**
+   *
+   * @see com.adaptris.core.Service#doService(com.adaptris.core.AdaptrisMessage)
+   */
+  @Override
+  public final void doService(AdaptrisMessage msg) throws ServiceException {
+    try {
+      StatelessSession session = ruleBase.newStatelessSession();
+      super.addListeners(session);
+      Object[] o = getResolver().create(msg);
+      session.execute(o);
+      getResolver().resolve(o, msg);
+    }
+    catch (Exception e) {
+      throw new ServiceException(e);
+    }
+  }
+
+  @Override
+  protected boolean serviceIsEnabled(License l) throws CoreException {
+    return l.isEnabled(License.ENTERPRISE);
+  }
+
+  @Override
+  protected void closeService() {
+  }
+
+  @Override
+  protected void initService() throws CoreException {
+  }
+
+  @Override
+  protected void startService() throws CoreException {
+  }
+
+  @Override
+  protected void stopService() {
+  }
+}
