@@ -19,7 +19,7 @@
      <artifact name="adp-drools" type="pom" ext="pom"/>
   </publications>
   <dependencies>
-  	<dependency org="com.adaptris" name="adp-core" rev="${adp-core-version}" conf="compile->*"/>
+  	<dependency org="com.adaptris" name="adp-core" rev="${adp-core-version}" changing="true"/>
   	<dependency org="com.adaptris" name="adp-apt" rev="1.0"/>
   	<dependency org="org.drools" name="drools-analytics" rev="4.0.7" transitive="false"/>
   	<dependency org="org.drools" name="drools-compiler" rev="4.0.7" transitive="false"/>
