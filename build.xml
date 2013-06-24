@@ -19,8 +19,9 @@
   	
     <property name="testsrc.dir" value="${basedir}/test/src"/>
     <property name="build.dir" value="${basedir}/build"/>
+  	<property name="example-xml.build.dir"  value="${build.dir}/example-xml"/>
     <property name="resources.dir" value="${basedir}/resources"/>
-    <property name="test.resources.dir" value="${basedir}/test/resources"/>
+    <property name="test.resources.dir" value="${basedir}/resources/tests/"/>
 
     <property name="classes.build.dir" value="${build.dir}/classes"/>
     <property name="testclasses.build.dir" value="${build.dir}/testclasses"/>
@@ -74,6 +75,7 @@
 
   <target name="prepare" depends="init, prepare-ivy">
     <mkdir dir="${build.dir}"/>
+  	<mkdir dir="${example-xml.build.dir}"/>
     <mkdir dir="${classes.build.dir}"/>
     <mkdir dir="${testclasses.build.dir}"/>
     <mkdir dir="${build.tmp.dir}"/>
@@ -210,6 +212,7 @@
       </batchtest>
       <classpath id="classpath.runtests">
         <path refid="main.classpath"/>
+      	<dirset dir="${test.resources.dir}"/>
         <pathelement path="${classes.build.dir}"/>
         <pathelement path="${testclasses.build.dir}"/>
       </classpath>

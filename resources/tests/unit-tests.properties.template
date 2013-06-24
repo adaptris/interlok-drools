@@ -1,0 +1,9 @@
+junit.SampleConfigCase.baseDir=${example-xml.build.dir}
+
+junit.drools.HelloWorld.drl.url=file:///${basedir}/resources/tests/HelloWorld.drl
+junit.drools.HelloWorld.drl.file=${basedir}/resources/tests/HelloWorld.drl
+
+
+junit.drools.Ticketing.drl.url=file:///${basedir}/resources/tests/TroubleTicketWithDSL.dslr
+junit.drools.Ticketing.drl.file=${basedir}/resources/tests/TroubleTicket.drl
+junit.drools.Ticketing.drl.dsl.url=file:///${basedir}/resources/tests/ticketing.dsl
