@@ -20,6 +20,8 @@
     <property name="testsrc.dir" value="${basedir}/test/src"/>
     <property name="build.dir" value="${basedir}/build"/>
   	<property name="example-xml.build.dir"  value="${build.dir}/example-xml"/>
+  	<property name="doc.dir"                value="${basedir}/docs"/>
+  	<property name="example-xml.doc.zip"    value="${doc.dir}/example-xml.zip"/>
     <property name="resources.dir" value="${basedir}/resources"/>
     <property name="test.resources.dir" value="${basedir}/resources/tests/"/>
 
@@ -75,6 +77,7 @@
 
   <target name="prepare" depends="init, prepare-ivy">
     <mkdir dir="${build.dir}"/>
+  	<mkdir dir="${doc.dir}"/>
   	<mkdir dir="${example-xml.build.dir}"/>
     <mkdir dir="${classes.build.dir}"/>
     <mkdir dir="${testclasses.build.dir}"/>
@@ -219,4 +222,7 @@
     </junit>
   </target>
 
+  <target name="example-xml.zip" depends="init" description="Build the example xml zip file">
+    <zip destfile = "${example-xml.doc.zip}" basedir="${example-xml.build.dir}" />
+  </target>
 </project>
