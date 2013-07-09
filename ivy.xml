@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
   <info organisation="com.adaptris" module="adp-drools" revision="${ivy.publish.revision.final}" status="release"/>
-  
+
   <configurations>
 	  <conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
 	  <conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
@@ -10,9 +10,6 @@
 	  <conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
 	  <conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
 	  <conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
-	  <conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
-	  <conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
-  	  <conf name="optional" visibility="public" description="contains all optional dependencies"/>
   </configurations>
   <publications>
      <artifact name="adp-drools" type="jar" ext="jar"/>
@@ -30,6 +27,6 @@
   	<dependency org="org.drools" name="drools-decisiontables" rev="4.0.7"/>
   	<dependency org="org.drools" name="drools-jsr94" rev="4.0.7"/>
   	<dependency org="org.apache.velocity" name="velocity" rev="1.7" transitive="false"/> <!-- Without transitive, all velocities deps will be included, which will break us cos ant 1.6 will also be included. -->
-  	<dependency org="junit" name="junit" rev="4.11" transitive="false"/>
+  	<dependency org="junit" name="junit" rev="4.11" conf="test->default"/>
   </dependencies>
 </ivy-module>
