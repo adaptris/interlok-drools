@@ -1,27 +1,27 @@
 ﻿<project basedir="." default="compile" name="drools">
-	
+
   <import file="${basedir}/../resources/ant-ivy-includes.xml"/> <!-- Ivy tasks -->
-	
+
   <tstamp>
     <format property="today" pattern="yyyy-MM-dd" locale="en"/>
   </tstamp>
 
   <target name="init">
-  	<property file="build.properties"/>
-  	
-  	<property name="manifest.title" value="Interlok Drools integration"/>
-  	<property name="manifest.vendor" value="Adaptris Ltd"/>
-  	<property name="ivy.publish.revision" value="3.0-SNAPSHOT"/>  <!-- Version number of this artifact -->
-  	<property name="adp-core-version" value="3.0-SNAPSHOT"/>
-  	
+    <property file="build.properties"/>
+
+    <property name="manifest.title" value="Interlok Drools integration"/>
+    <property name="manifest.vendor" value="Adaptris Ltd"/>
+    <property name="ivy.publish.revision" value="3.0-SNAPSHOT"/>  <!-- Version number of this artifact -->
+    <property name="adp-core-version" value="3.0-SNAPSHOT"/>
+
     <property name="src.dir" value="${basedir}/src"/>
     <property name="build-util.lib.dir"     value="${basedir}/../build-util"/>
-  	
+
     <property name="testsrc.dir" value="${basedir}/test/src"/>
     <property name="build.dir" value="${basedir}/build"/>
-  	<property name="example-xml.build.dir"  value="${build.dir}/example-xml"/>
-  	<property name="doc.dir"                value="${basedir}/docs"/>
-  	<property name="example-xml.doc.zip"    value="${doc.dir}/example-xml.zip"/>
+    <property name="example-xml.build.dir"  value="${build.dir}/example-xml"/>
+    <property name="doc.dir"                value="${basedir}/docs"/>
+    <property name="example-xml.doc.zip"    value="${doc.dir}/example-xml.zip"/>
     <property name="resources.dir" value="${basedir}/resources"/>
     <property name="test.resources.dir" value="${basedir}/resources/tests/"/>
 
@@ -32,7 +32,7 @@
     <property name="tests.output.dir" value="${basedir}/testoutput"/>
     <property name="html.tests.output.dir" value="${tests.output.dir}/html"/>
     <property name="jar.version" value="${today}"/>
-    
+
     <property name="javac.include.classes"  value="**/*.java" />
     <property name="junit.test.classes"     value="**/*Test*.java" />
     <patternset id="javac.exclude.sources">
@@ -55,7 +55,7 @@
     <property name="tmp.jar.name" value = "${project.name}-tmp.jar"/>
     <property name="yguard.report" value="${build.dir}/${project.name}-${jar.version}.yguard.xml.gz"/>
 
-	<property name="xstream.mapping.file"           value="annotation.properties"/>
+  <property name="xstream.mapping.file"           value="annotation.properties"/>
     <property name="xstream.mapping.path"           value="xstream"/>
     <property name="xstream.annotation.debug"       value="true"/>
     <!-- Properties for CData annotation processing -->
@@ -67,7 +67,7 @@
     <property name="beaninfo.mapping.path"        value="xstream"/>
     <property name="beaninfo.annotation.debug"    value="true"/>
 
-    
+
   </target>
 
 <!-- clean -->
@@ -77,8 +77,8 @@
 
   <target name="prepare" depends="init, prepare-ivy">
     <mkdir dir="${build.dir}"/>
-  	<mkdir dir="${doc.dir}"/>
-  	<mkdir dir="${example-xml.build.dir}"/>
+    <mkdir dir="${doc.dir}"/>
+    <mkdir dir="${example-xml.build.dir}"/>
     <mkdir dir="${classes.build.dir}"/>
     <mkdir dir="${testclasses.build.dir}"/>
     <mkdir dir="${build.tmp.dir}"/>
@@ -89,8 +89,8 @@
     <mkdir dir="${classes.build.dir}/META-INF/${xstream.mapping.path}"/>
     <mkdir dir="${classes.build.dir}/META-INF/${cdata.mapping.path}"/>
 
-  	<property name="compile.classpath" refid="main.classpath"/>
-  	<echo message="XXX - ${compile.classpath}"/>
+    <property name="compile.classpath" refid="main.classpath"/>
+    <echo level="verbose" message="---Ivy Resolved Classpath - ${compile.classpath}"/>
     <javac source="1.5" target="1.5" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
       <classpath refid="main.classpath"/>
       <compilerarg value="-AxstreamDebug=${xstream.annotation.debug}"/>
@@ -98,7 +98,7 @@
       <compilerarg value="-AcdataDebug=${cdata.annotation.debug}"/>
       <compilerarg value="-AcdataMappingFile=${classes.build.dir}/META-INF/${cdata.mapping.path}/${cdata.mapping.file}"/>
       <compilerarg value="-AbeanInfoDebug=${beaninfo.annotation.debug}"/>
-      <compilerarg value="-AbeanInfoMappingFile=${classes.build.dir}/META-INF/${beaninfo.mapping.path}/${beaninfo.mapping.file}"/>      
+      <compilerarg value="-AbeanInfoMappingFile=${classes.build.dir}/META-INF/${beaninfo.mapping.path}/${beaninfo.mapping.file}"/>
     </javac>
   </target>
 
@@ -215,7 +215,7 @@
       </batchtest>
       <classpath id="classpath.runtests">
         <path refid="main.classpath"/>
-      	<dirset dir="${test.resources.dir}"/>
+        <dirset dir="${test.resources.dir}"/>
         <pathelement path="${classes.build.dir}"/>
         <pathelement path="${testclasses.build.dir}"/>
       </classpath>
