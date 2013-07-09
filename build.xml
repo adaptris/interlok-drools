@@ -57,15 +57,15 @@
 
   <property name="xstream.mapping.file"           value="annotation.properties"/>
     <property name="xstream.mapping.path"           value="xstream"/>
-    <property name="xstream.annotation.debug"       value="true"/>
+    <property name="xstream.annotation.debug"       value="false"/>
     <!-- Properties for CData annotation processing -->
     <property name="cdata.mapping.file"           value="cdata.properties"/>
     <property name="cdata.mapping.path"           value="xstream"/>
-    <property name="cdata.annotation.debug"       value="true"/>
+    <property name="cdata.annotation.debug"       value="false"/>
     <!-- properties for beaninfo generation -->
     <property name="beaninfo.mapping.file"        value="javabeans.properties"/>
     <property name="beaninfo.mapping.path"        value="xstream"/>
-    <property name="beaninfo.annotation.debug"    value="true"/>
+    <property name="beaninfo.annotation.debug"    value="false"/>
 
 
   </target>
