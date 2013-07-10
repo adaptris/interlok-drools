@@ -205,7 +205,7 @@
   </target>
 
   <target name="junit" depends="init.tests">
-    <junit printsummary="true" fork="yes" failureproperty="junit.failed" showoutput="yes">
+    <junit printsummary="true" fork="yes" failureproperty="junit.failed" showoutput="no" forkmode="once">
       <formatter type="xml"/>
       <batchtest todir="${tests.output.dir}">
         <fileset dir="${testsrc.dir}">
