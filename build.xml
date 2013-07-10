@@ -1,5 +1,7 @@
 ﻿<project basedir="." default="compile" name="drools">
 
+  <property file="build.properties"/>
+  <property file="ivy.properties"/>
   <import file="${basedir}/../resources/ant-ivy-includes.xml"/> <!-- Ivy tasks -->
 
   <tstamp>
@@ -7,7 +9,6 @@
   </tstamp>
 
   <target name="init">
-    <property file="build.properties"/>
 
     <property name="manifest.title" value="Interlok Drools integration"/>
     <property name="manifest.vendor" value="Adaptris Ltd"/>
