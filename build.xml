@@ -77,9 +77,6 @@
   </target>
 
   <target name="compile" depends="prepare" description="Compile">
-    <mkdir dir="${classes.build.dir}/META-INF/${xstream.mapping.path}"/>
-    <mkdir dir="${classes.build.dir}/META-INF/${cdata.mapping.path}"/>
-
     <property name="compile.classpath" refid="main.classpath"/>
     <echo level="verbose" message="---Ivy Resolved Classpath - ${compile.classpath}"/>
     <javac source="1.5" target="1.5" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
