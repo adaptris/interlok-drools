@@ -165,12 +165,6 @@
 
   <target name="test" depends="run-tests" description="run tests">
     <adapter:test-reports basedir="${tests.output.dir}" reportdir="${html.tests.output.dir}"/>
-    <junitreport todir="${tests.output.dir}">
-      <fileset dir="${tests.output.dir}">
-        <include name="TEST-*.xml"/>
-      </fileset>
-      <report format="frames" todir="${html.tests.output.dir}"/>
-    </junitreport>
     <fail message="JUNIT tests failed, check output in ${tests.output.dir}" if="junit.failed"/>
   </target>
 
