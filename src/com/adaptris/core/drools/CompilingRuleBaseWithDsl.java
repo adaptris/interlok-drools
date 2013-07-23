@@ -5,10 +5,10 @@ import java.util.Iterator;
 
 import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.CoreException;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.adaptris.util.KeyValuePair;
 import com.adaptris.util.KeyValuePairSet;
 import com.adaptris.util.URLString;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Entry point for creating a RuleBase for using the JBoss Rules Engine.
@@ -34,7 +34,7 @@ import com.adaptris.util.URLString;
  * In the adapter configuration file this class is aliased as <b>drools-compiling-rule-base-with-dsl</b> which is the preferred alternative to the
  * fully qualified classname when building your configuration.
  * </p>
- 
+
  * @author lchan
  * @author $Author: lchan $
  */

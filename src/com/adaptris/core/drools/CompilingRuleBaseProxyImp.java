@@ -41,7 +41,7 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
   protected transient Logger logR;
   protected transient PackageBuilder builder;
   private transient RuleBase ruleBase;
-  @XStreamImplicit
+  @XStreamImplicit(itemFieldName = "rule-flow")
   private List<String> ruleFlows;
 
   public CompilingRuleBaseProxyImp() {

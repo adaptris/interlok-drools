@@ -82,8 +82,9 @@
   </target>
 
   <target name="compile" depends="prepare" description="Compile">
-    <javac source="1.5" target="1.5" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
+    <javac source="1.6" target="1.6" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
       <classpath refid="main.classpath"/>
+      <compilerarg value="-AxstreamImplicitDebug=true"/>
     </javac>
   </target>
 
@@ -136,7 +137,7 @@
 
   <target name="compile_tests" depends="compile, jar">
     <mkdir dir="${testclasses.build.dir}"/>
-    <javac source="1.5" target="1.5" destdir="${testclasses.build.dir}" srcdir="${testsrc.dir}" debug="on" debuglevel="source,lines,vars">
+    <javac source="1.6" target="1.6" destdir="${testclasses.build.dir}" srcdir="${testsrc.dir}" debug="on" debuglevel="source,lines,vars">
       <classpath id="classpath.compiletests">
         <pathelement path="${classes.build.dir}"/>
         <path refid="main.classpath"/>

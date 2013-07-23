@@ -4,7 +4,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.adaptris.annotation.GenerateBeanInfo;
 import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.URLString;
@@ -38,11 +37,10 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
  * @author lchan
  * @author $Author: lchan $
  */
-@GenerateBeanInfo
 @XStreamAlias("drools-compiling-rule-base-proxy")
 @MarshallingImperative(mapTo = "drools-compiling-rule-base-proxy", transientFields = {})
 public class CompilingRuleBaseProxy extends CompilingRuleBaseProxyImp {
-  @XStreamImplicit
+  @XStreamImplicit(itemFieldName = "rule-source")
   private List<String> ruleSources;
 
   public CompilingRuleBaseProxy() {
