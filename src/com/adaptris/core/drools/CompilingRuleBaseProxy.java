@@ -8,7 +8,6 @@ import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.URLString;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 /**
  * Entry point for creating a RuleBase for using the JBoss Rules Engine.
@@ -40,7 +39,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("drools-compiling-rule-base-proxy")
 @MarshallingImperative(mapTo = "drools-compiling-rule-base-proxy", transientFields = {})
 public class CompilingRuleBaseProxy extends CompilingRuleBaseProxyImp {
-  @XStreamImplicit(itemFieldName = "rule-source")
+  // @XStreamImplicit(itemFieldName = "rule-source")
   private List<String> ruleSources;
 
   public CompilingRuleBaseProxy() {
