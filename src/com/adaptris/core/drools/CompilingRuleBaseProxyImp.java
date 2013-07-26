@@ -28,6 +28,7 @@ import com.adaptris.core.CoreException;
 import com.adaptris.core.util.ProxyUtil;
 import com.adaptris.util.URLString;
 import com.adaptris.util.license.License;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 /**
  * Abstract Entry point for creating a RuleBase for using the JBoss Rules
@@ -40,7 +41,7 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
   protected transient Logger logR;
   protected transient PackageBuilder builder;
   private transient RuleBase ruleBase;
-  // @XStreamImplicit(itemFieldName = "rule-flow")
+  @XStreamImplicit(itemFieldName = "rule-flow")
   private List<String> ruleFlows;
 
   public CompilingRuleBaseProxyImp() {
