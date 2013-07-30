@@ -2,7 +2,6 @@ package com.adaptris.core.drools;
 
 import org.drools.StatelessSession;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
@@ -24,7 +23,6 @@ import com.adaptris.util.license.License;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-stateless-rule-service")
-@MarshallingImperative(mapTo = "drools-stateless-rule-service", transientFields = {})
 public class StatelessRuleService extends RuleServiceImpl {
 
   public StatelessRuleService() {

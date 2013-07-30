@@ -3,7 +3,6 @@ package com.adaptris.core.drools;
 import java.io.Reader;
 import java.util.Iterator;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.KeyValuePair;
 import com.adaptris.util.KeyValuePairSet;
@@ -39,7 +38,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-compiling-rule-base-with-dsl")
-@MarshallingImperative(mapTo = "drools-compiling-rule-base-with-dsl", transientFields = {})
 public class CompilingRuleBaseWithDsl extends CompilingRuleBaseProxyImp {
   private KeyValuePairSet ruleSources;
 

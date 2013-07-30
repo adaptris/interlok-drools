@@ -1,6 +1,5 @@
 package com.adaptris.core.drools.dynamic;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -15,7 +14,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  *
  */
 @XStreamAlias("drools-payload-field")
-@MarshallingImperative(mapTo = "drools-payload-field", transientFields = {})
 public class PayloadMapper extends JavabeanMapper {
 
   public PayloadMapper() {

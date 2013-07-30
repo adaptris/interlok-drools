@@ -1,6 +1,5 @@
 package com.adaptris.core.drools.dynamic;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -19,7 +18,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-configured-field")
-@MarshallingImperative(mapTo = "drools-configured-field", transientFields = {})
 public class ConfiguredFieldMapper extends JavabeanMapper {
 
   private String configuredValue;

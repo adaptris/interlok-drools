@@ -1,7 +1,6 @@
 package com.adaptris.core.drools;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.adaptris.annotation.MarshallingImperative;
 
 import java.util.EventObject;
 
@@ -20,7 +19,6 @@ import org.slf4j.MarkerFactory;
  * @author $Author: lchan $
  */
 @XStreamAlias("slf4j-logging-event-listener")
-@MarshallingImperative(mapTo="slf4j-logging-event-listener", transientFields={})
 public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
   private enum LogHandler {
     TRACE {

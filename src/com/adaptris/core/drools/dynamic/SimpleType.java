@@ -1,7 +1,6 @@
 package com.adaptris.core.drools.dynamic;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.adaptris.annotation.MarshallingImperative;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -18,7 +17,6 @@ import java.math.BigDecimal;
  * @see JavabeanMapper
  */
 @XStreamAlias("drools-simple-type")
-@MarshallingImperative(mapTo="drools-simple-type", transientFields={})
 public class SimpleType implements TypeWrapper {
   /**
    * The Types wrapped by this SimpleType implementation.

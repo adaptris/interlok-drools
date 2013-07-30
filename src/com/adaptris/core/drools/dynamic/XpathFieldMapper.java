@@ -4,7 +4,6 @@ import static com.adaptris.core.util.XmlHelper.createXmlUtils;
 
 import java.io.ByteArrayOutputStream;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -22,7 +21,6 @@ import com.adaptris.util.XmlUtils;
  *
  */
 @XStreamAlias("drools-xpath-field")
-@MarshallingImperative(mapTo = "drools-xpath-field", transientFields = {})
 public class XpathFieldMapper extends JavabeanMapper {
 
   private String xpath;

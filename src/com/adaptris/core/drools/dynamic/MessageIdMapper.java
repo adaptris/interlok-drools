@@ -1,6 +1,5 @@
 package com.adaptris.core.drools.dynamic;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -16,7 +15,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author lchan
  */
 @XStreamAlias("drools-message-id-field")
-@MarshallingImperative(mapTo = "drools-message-id-field", transientFields = {})
 public class MessageIdMapper extends JavabeanMapper {
 
   public MessageIdMapper() {

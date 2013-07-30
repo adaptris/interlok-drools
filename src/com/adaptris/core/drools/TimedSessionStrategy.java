@@ -5,7 +5,6 @@ import java.util.Calendar;
 import org.drools.RuleBase;
 import org.drools.StatefulSession;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -30,7 +29,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-timed-session-strategy")
-@MarshallingImperative(mapTo = "drools-timed-session-strategy", transientFields = {})
 public class TimedSessionStrategy extends SessionManagementStrategyImp {
 
   private transient StatefulSession session = null;

@@ -1,6 +1,5 @@
 package com.adaptris.core.drools.dynamic;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -16,7 +15,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @see JavabeanMapper
  */
 @XStreamAlias("drools-metadata-field")
-@MarshallingImperative(mapTo = "drools-metadata-field", transientFields = {})
 public class MetadataFieldMapper extends JavabeanMapper {
 
   private String metadataKey;

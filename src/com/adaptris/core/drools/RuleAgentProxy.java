@@ -10,7 +10,6 @@ import org.drools.agent.RuleAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.CoreException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.adaptris.util.KeyValuePairSet;
@@ -40,7 +39,6 @@ import com.adaptris.util.license.License;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-rule-agent-proxy")
-@MarshallingImperative(mapTo = "drools-rule-agent-proxy", transientFields = {})
 public class RuleAgentProxy implements RuleBaseProxy {
   private static transient Logger logR = LoggerFactory.getLogger(RuleAgentProxy.class);
 

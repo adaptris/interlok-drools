@@ -2,7 +2,6 @@ package com.adaptris.core.drools;
 
 import org.drools.StatefulSession;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
@@ -25,7 +24,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-stateful-rule-flow-service")
-@MarshallingImperative(mapTo = "drools-stateful-rule-flow-service", transientFields = {})
 public class StatefulRuleFlowService extends RuleServiceImpl {
 
   private SessionManagementStrategy sessionStrategy;

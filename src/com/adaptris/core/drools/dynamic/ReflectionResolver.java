@@ -6,7 +6,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -26,7 +25,6 @@ import com.adaptris.util.license.License;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-reflection-resolver")
-@MarshallingImperative(mapTo = "drools-reflection-resolver", transientFields = {})
 public class ReflectionResolver implements Resolver {
   private transient Logger logR = LoggerFactory.getLogger(ReflectionResolver.class);
 

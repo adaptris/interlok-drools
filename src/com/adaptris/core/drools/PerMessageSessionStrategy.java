@@ -3,7 +3,6 @@ package com.adaptris.core.drools;
 import org.drools.RuleBase;
 import org.drools.StatefulSession;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -25,7 +24,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-per-message-session-strategy")
-@MarshallingImperative(mapTo = "drools-per-message-session-strategy", transientFields = {})
 public class PerMessageSessionStrategy extends SessionManagementStrategyImp {
 
   private transient StatefulSession session = null;

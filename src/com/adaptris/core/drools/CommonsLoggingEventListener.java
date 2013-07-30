@@ -6,7 +6,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.adaptris.annotation.MarshallingImperative;
 
 /**
  * Implementation of all the event listener interfaces that simply logs with the specified category using the commons-logging
@@ -22,7 +21,6 @@ import com.adaptris.annotation.MarshallingImperative;
  */
 @Deprecated
 @XStreamAlias("drools-commons-logging-event-listener")
-@MarshallingImperative(mapTo = "drools-commons-logging-event-listener", transientFields = {})
 public class CommonsLoggingEventListener extends LoggingEventListenerImpl {
   private enum LogHandler {
     TRACE {

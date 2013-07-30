@@ -3,7 +3,6 @@ package com.adaptris.core.drools;
 import org.drools.RuleBase;
 import org.drools.StatefulSession;
 
-import com.adaptris.annotation.MarshallingImperative;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -27,7 +26,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-metadata-session-strategy")
-@MarshallingImperative(mapTo = "drools-metadata-session-strategy", transientFields = {})
 public class MetadataSessionStrategy extends SessionManagementStrategyImp {
 
   private static final String DEFAULT_METADATA_KEY = "jboss.drools.session.dispose";
