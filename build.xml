@@ -36,11 +36,7 @@
 
     <property name="javac.include.classes"  value="**/*.java" />
     <property name="junit.test.classes"     value="**/*Test*.java" />
-    <patternset id="javac.exclude.sources">
-    </patternset>
 
-    <patternset id="junit.exclude.sources">
-    </patternset>
     <patternset id="junit.exclude.tests">
       <exclude name="**/AllTests.java"/>
       <exclude name="**/stubs/*.java"/>
@@ -84,7 +80,6 @@
   <target name="compile" depends="prepare" description="Compile">
     <javac source="1.6" target="1.6" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
       <classpath refid="main.classpath"/>
-      <compilerarg value="-AxstreamImplicitDebug=true"/>
     </javac>
   </target>
 
