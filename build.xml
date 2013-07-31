@@ -52,7 +52,7 @@
     <property name="tmp.jar.name" value = "${project.name}-tmp.jar"/>
     <property name="yguard.report" value="${build.dir}/${project.name}-${jar.version}.yguard.xml.gz"/>
 
-
+    <property name="javac.version" value="1.7"/>
   </target>
 
 <!-- clean -->
@@ -78,7 +78,7 @@
   </target>
 
   <target name="compile" depends="prepare" description="Compile">
-    <javac source="1.6" target="1.6" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
+    <javac source="${javac.version}" target="${javac.version}" destdir="${classes.build.dir}" srcdir="${src.dir}" debug="on" debuglevel="source,lines">
       <classpath refid="main.classpath"/>
     </javac>
   </target>
@@ -132,7 +132,7 @@
 
   <target name="compile_tests" depends="compile, jar">
     <mkdir dir="${testclasses.build.dir}"/>
-    <javac source="1.6" target="1.6" destdir="${testclasses.build.dir}" srcdir="${testsrc.dir}" debug="on" debuglevel="source,lines,vars">
+    <javac source="${javac.version}" target="${javac.version}" destdir="${testclasses.build.dir}" srcdir="${testsrc.dir}" debug="on" debuglevel="source,lines,vars">
       <classpath id="classpath.compiletests">
         <pathelement path="${classes.build.dir}"/>
         <path refid="main.classpath"/>

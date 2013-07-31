@@ -1,4 +1,5 @@
 junit.SampleConfigCase.baseDir=${example-xml.build.dir}
+junit.DroolsServiceExamples.baseDir=${junit.SampleConfigCase.baseDir}/services/drools
 
 junit.drools.HelloWorld.drl.url=file:///${basedir}/resources/tests/HelloWorld.drl
 junit.drools.HelloWorld.drl.file=${basedir}/resources/tests/HelloWorld.drl
