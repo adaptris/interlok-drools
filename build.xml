@@ -10,7 +10,7 @@
 
   <target name="init">
 
-    <property name="manifest.title" value="Interlok Drools integration"/>
+    <property name="manifest.title" value="Interlok JBoss Rules integration"/>
     <property name="manifest.vendor" value="Adaptris Ltd"/>
     <property name="ivy.publish.revision" value="3.0-SNAPSHOT"/>  <!-- Version number of this artifact -->
     <property name="adp-core-version" value="3.0-SNAPSHOT"/>
