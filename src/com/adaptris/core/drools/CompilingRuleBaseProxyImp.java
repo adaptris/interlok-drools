@@ -25,7 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adaptris.core.CoreException;
-import com.adaptris.core.util.ProxyUtil;
 import com.adaptris.util.URLString;
 import com.adaptris.util.license.License;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
@@ -123,7 +122,7 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
     }
     URL url = new URL(loc.toString());
     URLConnection conn = url.openConnection();
-    ProxyUtil.applyBasicProxyAuthorisation(conn);
+    // ProxyUtil.applyBasicProxyAuthorisation(conn);
     return new InputStreamReader(conn.getInputStream());
   }
 
