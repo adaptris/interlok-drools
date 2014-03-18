@@ -6,8 +6,10 @@ import java.io.ByteArrayOutputStream;
 
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.adaptris.util.KeyValuePairSet;
 import com.adaptris.util.XmlUtils;
+import com.adaptris.util.text.xml.SimpleNamespaceContext;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Resolve an XPath on the AdaptrisMessage payload and use that value as a
@@ -24,6 +26,7 @@ import com.adaptris.util.XmlUtils;
 public class XpathFieldMapper extends JavabeanMapper {
 
   private String xpath;
+  private KeyValuePairSet namespaceContext = null;
 
   public XpathFieldMapper() {
     super();
@@ -36,7 +39,7 @@ public class XpathFieldMapper extends JavabeanMapper {
 
   @Override
   void translate(AdaptrisMessage msg, Object obj) throws Exception {
-    XmlUtils xmlUtils = createXmlUtils(msg);
+    XmlUtils xmlUtils = createXmlUtils(msg, SimpleNamespaceContext.create(getNamespaceContext()));
 
     try {
       String xpathValue = xmlUtils.getSingleTextItem(getXpath());
@@ -52,7 +55,7 @@ public class XpathFieldMapper extends JavabeanMapper {
 
   @Override
   void translate(Object obj, AdaptrisMessage msg) throws Exception {
-    XmlUtils xmlUtils = createXmlUtils(msg);
+    XmlUtils xmlUtils = createXmlUtils(msg, SimpleNamespaceContext.create(getNamespaceContext()));
     try {
       Object o = invokeGetter(obj, getFieldName());
       xmlUtils.setNodeValue(getXpath(), getFieldType().unwrap(o));
@@ -86,5 +89,19 @@ public class XpathFieldMapper extends JavabeanMapper {
    */
   public void setXpath(String s) {
     xpath = s;
+  }
+
+  /**
+   * @return the namespaceContext
+   */
+  public KeyValuePairSet getNamespaceContext() {
+    return namespaceContext;
+  }
+
+  /**
+   * @param s the namespaceContext to set
+   */
+  public void setNamespaceContext(KeyValuePairSet s) {
+    this.namespaceContext = s;
   }
 }
