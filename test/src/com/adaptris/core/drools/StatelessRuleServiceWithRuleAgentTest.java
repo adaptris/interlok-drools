@@ -37,7 +37,7 @@ public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
     bean.addToBeanMapper(new ConfiguredFieldMapper("Message", new SimpleType(SimpleType.Type.STRING), "Hello World"));
     bean.addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
     service.setResolver(bean);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener());
+    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LogLevel.INFO));
     service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;

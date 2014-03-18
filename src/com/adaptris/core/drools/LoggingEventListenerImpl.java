@@ -1,9 +1,13 @@
 package com.adaptris.core.drools;
 
+import static org.apache.commons.lang.StringUtils.isEmpty;
+
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.EventObject;
+
+import javax.validation.constraints.Pattern;
 
 import org.drools.WorkingMemory;
 import org.drools.common.RuleFlowGroupListener;
@@ -39,21 +43,28 @@ import org.drools.event.RuleBaseEventListener;
 import org.drools.event.RuleFlowGroupActivatedEvent;
 import org.drools.event.RuleFlowGroupDeactivatedEvent;
 import org.drools.event.WorkingMemoryEventListener;
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.adaptris.annotation.AutoPopulated;
 
 /**
  * Abstract Implementation of all the event listener interfaces that simply logs to the configured logging system with the specified
  * category.
- *
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
 public abstract class LoggingEventListenerImpl implements RuleBaseEventListener, RuleFlowGroupListener, WorkingMemoryEventListener,
     AgendaEventListener {
-  private enum LogLevel {
+  public enum LogLevel {
     TRACE, DEBUG, INFO, WARN, ERROR, FATAL;
   }
 
+  @Pattern(regexp = "TRACE|DEBUG|INFO|WARN|ERROR|FATAL")
+  @AutoPopulated
   private String logLevel;
+  @AutoPopulated
+  @NotBlank
   private String category;
 
   public LoggingEventListenerImpl() {
@@ -61,20 +72,29 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
     setLogLevel(LogLevel.TRACE.name());
   }
 
+  public LoggingEventListenerImpl(String category, LogLevel level) {
+    this(category, level.name());
+  }
+
+  public LoggingEventListenerImpl(String category, String level) {
+    setCategory(category);
+    setLogLevel(level);
+  }
+
   /**
    * Set the logging category for the underlying logger.
-   *
+   * 
    * @param s
    */
   public void setCategory(String s) {
-    if (s != null && !"".equals(s)) {
+    if (!isEmpty(s)) {
       category = s;
     }
   }
 
   /**
    * Get the category of the underlying logger.
-   *
+   * 
    * @return the category
    */
   public String getCategory() {
@@ -83,7 +103,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
 
   /**
    * Get the log level at which the underlying logger logs.
-   *
+   * 
    * @return the log level
    */
   public String getLogLevel() {
@@ -92,7 +112,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
 
   /**
    * Set the log level at which the underlying logger logs.
-   *
+   * 
    * @param s the log level, one of "TRACE", "DEBUG", "INFO" "WARN", "ERROR", "FATAL". The default is "TRACE"
    */
   public void setLogLevel(String s) {

@@ -12,7 +12,6 @@ import com.adaptris.core.drools.helloworld.CustomResolver;
 import com.adaptris.core.drools.helloworld.Message;
 import com.adaptris.core.util.LifecycleHelper;
 
-@SuppressWarnings("deprecation")
 public abstract class BaseRuleServiceCase extends DroolsServiceExample {
 
   protected static final String MSG_DATA = "The quick brown fox jumps over the lazy dog";

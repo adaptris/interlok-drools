@@ -33,19 +33,15 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     s1.setSessionManagementStrategy(new PerpetualSessionStrategy());
     s1.setResolver(new TicketResolver());
     start(s1);
-    AdaptrisMessage msg = AdaptrisMessageFactory.getDefaultInstance()
-        .newMessage(MSG_DATA);
+    AdaptrisMessage msg = AdaptrisMessageFactory.getDefaultInstance().newMessage(MSG_DATA);
     s1.doService(msg);
     assertEquals(Ticket.NEW, msg.getMetadataValue(Customer.CUSTOMER_SILVER));
     assertEquals(Ticket.NEW, msg.getMetadataValue(Customer.CUSTOMER_BRONZE));
     Thread.sleep(5000);
-    AdaptrisMessage msg2 = AdaptrisMessageFactory.getDefaultInstance()
-        .newMessage(MSG_DATA);
+    AdaptrisMessage msg2 = AdaptrisMessageFactory.getDefaultInstance().newMessage(MSG_DATA);
     s1.doService(msg2);
-    assertEquals("Ticket is Escalated", Ticket.ESCALATED, msg2
-        .getMetadataValue(Customer.CUSTOMER_SILVER));
-    assertEquals("Ticket is not Escalated", Ticket.NEW, msg2
-        .getMetadataValue(Customer.CUSTOMER_BRONZE));
+    assertEquals("Ticket is Escalated", Ticket.ESCALATED, msg2.getMetadataValue(Customer.CUSTOMER_SILVER));
+    assertEquals("Ticket is not Escalated", Ticket.NEW, msg2.getMetadataValue(Customer.CUSTOMER_BRONZE));
     stop(s1);
   }
 
@@ -103,8 +99,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     doServiceWithAssertions(s1);
     StatefulSession session2 = strategy.retrieveSessionForTests();
     assertTrue("Sessions should not be different", (session1 == session2));
-    AdaptrisMessage msg = AdaptrisMessageFactory.getDefaultInstance()
-        .newMessage(MSG_DATA);
+    AdaptrisMessage msg = AdaptrisMessageFactory.getDefaultInstance().newMessage(MSG_DATA);
     msg.addMetadata(METADATA_KEY, "true");
     doServiceWithAssertions(s1, msg);
     session2 = strategy.retrieveSessionForTests();
@@ -118,13 +113,11 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     service.setResolver(new CustomResolver());
     CompilingRuleBaseWithDsl compiler = new CompilingRuleBaseWithDsl();
     compiler.getRuleSources().addKeyValuePair(
-        new KeyValuePair("http://myserver.com/myDomainRuleFile",
-            "http://myserver.com/MyDomainSpecificLanguageFile"));
+        new KeyValuePair("http://myserver.com/myDomainRuleFile", "http://myserver.com/MyDomainSpecificLanguageFile"));
     compiler.getRuleSources().addKeyValuePair(
-        new KeyValuePair("http://myserver.com/myDomainRuleFile2",
-            "http://myserver.com/MyDomainSpecificLanguageFile"));
+        new KeyValuePair("http://myserver.com/myDomainRuleFile2", "http://myserver.com/MyDomainSpecificLanguageFile"));
     service.setRuntimeRuleBase(compiler);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener());
+    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LogLevel.INFO));
     service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
@@ -150,8 +143,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     String drlFile = PROPERTIES.getProperty("drools.Ticketing.drl.url");
     String dslFile = PROPERTIES.getProperty("drools.Ticketing.drl.dsl.url");
     CompilingRuleBaseWithDsl compiler = new CompilingRuleBaseWithDsl();
-    compiler.getRuleSources().addKeyValuePair(
-        new KeyValuePair(drlFile, dslFile));
+    compiler.getRuleSources().addKeyValuePair(new KeyValuePair(drlFile, dslFile));
     service.setRuntimeRuleBase(compiler);
     return service;
   }

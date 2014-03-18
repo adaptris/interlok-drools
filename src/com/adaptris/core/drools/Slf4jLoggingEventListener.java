@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
 
+import com.adaptris.annotation.GenerateBeanInfo;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -18,7 +19,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author lchan
  * @author $Author: lchan $
  */
-@XStreamAlias("slf4j-logging-event-listener")
+@XStreamAlias("drools-slf4j-logging-event-listener")
+@GenerateBeanInfo
 public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
   private enum LogHandler {
     TRACE {
@@ -62,6 +64,10 @@ public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
 
   public Slf4jLoggingEventListener() {
     super();
+  }
+
+  public Slf4jLoggingEventListener(String category, LogLevel level) {
+    super(category, level);
   }
 
   @Override
