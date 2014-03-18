@@ -2,7 +2,9 @@ package com.adaptris.core.drools;
 
 import org.drools.RuleBase;
 import org.drools.StatefulSession;
+import org.hibernate.validator.constraints.NotBlank;
 
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -31,6 +33,8 @@ public class MetadataSessionStrategy extends SessionManagementStrategyImp {
   private static final String DEFAULT_METADATA_KEY = "jboss.drools.session.dispose";
 
   private transient StatefulSession session = null;
+  @NotBlank
+  @AutoPopulated
   private String metadataKey;
 
   /**

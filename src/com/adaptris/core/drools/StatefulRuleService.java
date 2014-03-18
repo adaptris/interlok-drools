@@ -1,7 +1,11 @@
 package com.adaptris.core.drools;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.drools.StatefulSession;
 
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
@@ -26,6 +30,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("drools-stateful-rule-service")
 public class StatefulRuleService extends RuleServiceImpl {
 
+  @NotNull
+  @AutoPopulated
+  @Valid
   private SessionManagementStrategy sessionManagementStrategy;
   private boolean dynamicObjects;
 

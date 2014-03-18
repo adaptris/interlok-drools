@@ -4,12 +4,15 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.validation.constraints.NotNull;
+
 import org.drools.RuleBase;
 import org.drools.agent.AgentEventListener;
 import org.drools.agent.RuleAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.KeyValuePairSet;
 import com.adaptris.util.license.License;
@@ -40,6 +43,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 public class RuleAgentProxy implements RuleBaseProxy {
   private static transient Logger logR = LoggerFactory.getLogger(RuleAgentProxy.class);
 
+  @NotNull
+  @AutoPopulated
   private KeyValuePairSet ruleAgentProperties;
   private transient RuleAgent ruleAgent;
   private AgentEventListener agentEventListener;

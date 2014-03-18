@@ -1,9 +1,11 @@
 package com.adaptris.core.drools.dynamic;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 import java.io.IOException;
 import java.math.BigDecimal;
+
+import javax.validation.constraints.Pattern;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 
 /**
@@ -133,6 +135,7 @@ public class SimpleType implements TypeWrapper {
     abstract Object wrap(String s);
   }
 
+  @Pattern(regexp = "BIGDECIMAL|BOOLEAN|DOUBLE|FLOAT|INTEGER|LONG|STRING")
   private String type;
 
   public SimpleType() {

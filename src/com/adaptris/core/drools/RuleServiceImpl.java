@@ -1,5 +1,8 @@
 package com.adaptris.core.drools;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.drools.RuleBase;
 import org.drools.WorkingMemoryEventManager;
 import org.drools.event.AgendaEventListener;
@@ -23,8 +26,12 @@ import com.adaptris.util.license.License;
  */
 public abstract class RuleServiceImpl extends ServiceImp {
 
+  @NotNull
+  @Valid
   private Resolver resolver;
   protected transient RuleBase ruleBase;
+  @NotNull
+  @Valid
   private RuleBaseProxy runtimeRuleBase;
   private RuleBaseEventListener ruleBaseEventListener = null;
   private WorkingMemoryEventListener workingMemoryEventListener = null;
@@ -39,7 +46,6 @@ public abstract class RuleServiceImpl extends ServiceImp {
    * @param m the session.
    * @see #setAgendaEventListener(AgendaEventListener)
    * @see #setRuleBaseEventListener(RuleBaseEventListener)
-   * @see #setRuleFlowEventListener(RuleFlowEventListener)
    * @see #setWorkingMemoryEventListener(WorkingMemoryEventListener)
    */
   protected void addListeners(WorkingMemoryEventManager m) {

@@ -17,6 +17,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.drools.RuleBase;
 import org.drools.RuleBaseFactory;
 import org.drools.compiler.PackageBuilder;
@@ -24,6 +26,7 @@ import org.drools.rule.Package;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.URLString;
 import com.adaptris.util.license.License;
@@ -40,6 +43,8 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
   protected transient Logger logR;
   protected transient PackageBuilder builder;
   private transient RuleBase ruleBase;
+  @NotNull
+  @AutoPopulated
   @XStreamImplicit(itemFieldName = "rule-flow")
   private List<String> ruleFlows;
 

@@ -1,6 +1,7 @@
 package com.adaptris.core.drools.dynamic;
 
 import com.adaptris.core.AdaptrisMarshaller;
+import com.adaptris.core.CoreException;
 import com.adaptris.core.DefaultMarshaller;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -34,7 +35,7 @@ public class MarshalledTypeWrapper implements TypeWrapper {
   }
 
   public MarshalledTypeWrapper(String classname) throws Exception {
-    this(classname, DefaultMarshaller.getDefaultMarshaller());
+    setMarshalledClassname(classname);
   }
 
   public MarshalledTypeWrapper(String classname, AdaptrisMarshaller m) {
@@ -48,7 +49,7 @@ public class MarshalledTypeWrapper implements TypeWrapper {
    */
   @Override
   public String unwrap(Object o) throws Exception {
-    return marshaller.marshal(o);
+    return currentMarshaller().marshal(o);
   }
 
   /**
@@ -57,9 +58,7 @@ public class MarshalledTypeWrapper implements TypeWrapper {
    */
   @Override
   public Object wrap(String s) throws Exception {
-    Object result = null;
-    result = marshaller.unmarshal(s);
-    return result;
+    return currentMarshaller().unmarshal(s);
   }
 
   /**
@@ -90,4 +89,7 @@ public class MarshalledTypeWrapper implements TypeWrapper {
     marshaller = m;
   }
 
+  private AdaptrisMarshaller currentMarshaller() throws CoreException {
+    return getMarshaller() != null ? getMarshaller() : DefaultMarshaller.getDefaultMarshaller();
+  }
 }

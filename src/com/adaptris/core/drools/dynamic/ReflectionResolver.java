@@ -3,16 +3,20 @@ package com.adaptris.core.drools.dynamic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
-import com.adaptris.util.XmlUtils;
 import com.adaptris.util.license.License;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Class for manipulating java beans using Reflection.
@@ -28,11 +32,16 @@ import com.adaptris.util.license.License;
 public class ReflectionResolver implements Resolver {
   private transient Logger logR = LoggerFactory.getLogger(ReflectionResolver.class);
 
+  @NotBlank
   private String beanClassname;
+  @NotNull
+  @AutoPopulated
+  @Valid
   private List<JavabeanMapper> toBeanMappers;
+  @NotNull
+  @AutoPopulated
+  @Valid
   private List<JavabeanMapper> fromBeanMappers;
-
-  private transient XmlUtils xmlUtils;
 
   public ReflectionResolver() {
     setToBeanMappers(new ArrayList<JavabeanMapper>());

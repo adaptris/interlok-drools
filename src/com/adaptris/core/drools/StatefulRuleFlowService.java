@@ -1,13 +1,19 @@
 package com.adaptris.core.drools;
 
-import org.drools.StatefulSession;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+import org.drools.StatefulSession;
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
 import com.adaptris.core.util.LifecycleHelper;
 import com.adaptris.util.license.License;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 
 /**
  * Stateful JBoss Rules Engine execution using a Ruleflow.
@@ -26,7 +32,11 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("drools-stateful-rule-flow-service")
 public class StatefulRuleFlowService extends RuleServiceImpl {
 
+  @NotNull
+  @Valid
+  @AutoPopulated
   private SessionManagementStrategy sessionStrategy;
+  @NotBlank
   private String ruleFlowName;
 
   /**

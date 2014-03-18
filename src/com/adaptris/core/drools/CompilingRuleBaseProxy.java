@@ -4,6 +4,9 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.URLString;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -38,6 +41,8 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
  */
 @XStreamAlias("drools-compiling-rule-base-proxy")
 public class CompilingRuleBaseProxy extends CompilingRuleBaseProxyImp {
+  @NotNull
+  @AutoPopulated
   @XStreamImplicit(itemFieldName = "rule-source")
   private List<String> ruleSources;
 

@@ -1,5 +1,7 @@
 package com.adaptris.core.drools.dynamic;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -17,6 +19,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("drools-metadata-field")
 public class MetadataFieldMapper extends JavabeanMapper {
 
+  @NotBlank
   private String metadataKey;
 
   public MetadataFieldMapper() {
