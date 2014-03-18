@@ -36,15 +36,7 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
   public void testWithCustomMediator() throws Exception {
     RuleServiceImpl service = createHelloWorldRule();
     service.setResolver(new CustomResolver());
-    start(service, true);
-    doServiceWithAssertions(service);
-    stop(service);
-  }
-
-  public void testWithCustomMediator_SLF4J() throws Exception {
-    RuleServiceImpl service = createHelloWorldRule();
-    service.setResolver(new CustomResolver());
-    start(service, false);
+    start(service);
     doServiceWithAssertions(service);
     stop(service);
   }
@@ -58,21 +50,7 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
     bean.addToBeanMapper(new XpathFieldMapper("Message", new SimpleType(SimpleType.Type.STRING), XPATH_SAMPLE));
     bean.addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
     service.setResolver(bean);
-    start(service, true);
-    doServiceWithAssertions(service, AdaptrisMessageFactory.getDefaultInstance().newMessage(XML_DOC));
-    stop(service);
-  }
-
-  public void testWithDynamicResolver_SLF4J() throws Exception {
-    RuleServiceImpl service = createHelloWorldRule();
-    ReflectionResolver bean = new ReflectionResolver();
-    bean.setBeanClassname(Message.class.getCanonicalName());
-    bean.addFromBeanMapper(new MetadataFieldMapper("Message", new SimpleType(SimpleType.Type.STRING), Message.MESSAGE_METADATA));
-    bean.addFromBeanMapper(new MetadataFieldMapper("Status", new SimpleType(SimpleType.Type.INTEGER), Message.STATUS_METADATA));
-    bean.addToBeanMapper(new XpathFieldMapper("Message", new SimpleType(SimpleType.Type.STRING), XPATH_SAMPLE));
-    bean.addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
-    service.setResolver(bean);
-    start(service, false);
+    start(service);
     doServiceWithAssertions(service, AdaptrisMessageFactory.getDefaultInstance().newMessage(XML_DOC));
     stop(service);
   }
@@ -100,10 +78,10 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
     return false;
   }
 
-  protected static void start(RuleServiceImpl service, boolean useClog) throws Exception {
-    service.setAgendaEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
-    service.setRuleBaseEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
+  protected static void start(RuleServiceImpl service) throws Exception {
+    service.setAgendaEventListener(new Slf4jLoggingEventListener());
+    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
+    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     LifecycleHelper.init(service);
     LifecycleHelper.start(service);
   }

@@ -18,23 +18,21 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Proxy for creating a rule agent.
  * <p>
- * This keeps a static Map of all the configured RuleAgents keyed against the
- * RuleAgentProperties; this means that an attempt is made to re-use the agent
- * if the same rulebase configuration is specified. This makes an attempt to
- * conform to the requirement laid down in {@link org.drools.agent.RuleAgent}
- * which specifies that <b>You should only have ONE instance of an agent per
+ * This keeps a static Map of all the configured RuleAgents keyed against the RuleAgentProperties; this means that an attempt is
+ * made to re-use the agent if the same rulebase configuration is specified. This makes an attempt to conform to the requirement
+ * laid down in {@link org.drools.agent.RuleAgent} which specifies that <b>You should only have ONE instance of an agent per
  * rulebase configuration</b>
  * </p>
  * <p>
- * Due to flexibility of configuration, it is possible to violate that
- * requirement (simply perhaps by changing RuleAgent name); in such cases
- * results may be undefined.
+ * Due to flexibility of configuration, it is possible to violate that requirement (simply perhaps by changing RuleAgent name); in
+ * such cases results may be undefined.
  * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-rule-agent-proxy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
+ * 
+ * <p>
+ * In the adapter configuration file this class is aliased as <b>drools-rule-agent-proxy</b> which is the preferred alternative to
+ * the fully qualified classname when building your configuration.
  * </p>
- 
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
@@ -57,7 +55,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.LicensedComponent#isEnabled(License)
    */
   @Override
@@ -66,7 +64,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.AdaptrisComponent#init()
    */
   @Override
@@ -83,14 +81,14 @@ public class RuleAgentProxy implements RuleBaseProxy {
     else {
       result = RuleAgent.newRuleAgent(p, rap.getAgentEventListener() != null
           ? rap.getAgentEventListener()
-          : new CommonsLoggingEventListener());
+          : new DefaultLoggingEventListenerImpl());
       RULEAGENT_HASH.put(p, result);
     }
     return result;
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.AdaptrisComponent#start()
    */
   @Override
@@ -101,7 +99,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.AdaptrisComponent#stop()
    */
   @Override
@@ -112,7 +110,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.AdaptrisComponent#close()
    */
   @Override
@@ -120,7 +118,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   *
+   * 
    * @see com.adaptris.core.drools.RuleBaseProxy#createRuleBase()
    */
   @Override
@@ -156,7 +154,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
 
   /**
    * Specify the listener for handling Agent lifecycle events.
-   *
+   * 
    * @param ael the agentEventListener to set, null to use the default.
    */
   public void setAgentEventListener(AgentEventListener ael) {
@@ -164,11 +162,9 @@ public class RuleAgentProxy implements RuleBaseProxy {
   }
 
   /**
-   * Overrides the default AgentEventListener with one that logs to the
-   * configured commons logger.
+   * Overrides the default AgentEventListener with one that logs to the configured logger.
    */
-  private static class CommonsLoggingEventListener implements
-      AgentEventListener {
+  private static class DefaultLoggingEventListenerImpl implements AgentEventListener {
     private String name;
 
     @Override
@@ -200,7 +196,6 @@ public class RuleAgentProxy implements RuleBaseProxy {
     public void warning(String message, Object object) {
       logR.warn("RuleAgent(" + name + ") : Message[" + message + "] Object[" + object + "]");
     }
-
 
     @Override
     public void debug(String message, Object object) {
