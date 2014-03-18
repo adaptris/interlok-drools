@@ -71,4 +71,10 @@ public class CommonsLoggingEventListener extends LoggingEventListenerImpl {
     LogHandler.valueOf(getLogLevel()).log(LogFactory.getLog(getCategory()), e.toString());
   }
 
+
+  @Override
+  protected void log(String s) {
+    LogHandler.valueOf(getLogLevel()).log(LogFactory.getLog(getCategory()), s);
+  }
+
 }

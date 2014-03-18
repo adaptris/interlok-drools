@@ -1,14 +1,20 @@
 package com.adaptris.core.drools;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.EventObject;
 
 import org.drools.WorkingMemory;
+import org.drools.common.RuleFlowGroupListener;
 import org.drools.event.ActivationCancelledEvent;
 import org.drools.event.ActivationCreatedEvent;
 import org.drools.event.AfterActivationFiredEvent;
 import org.drools.event.AfterFunctionRemovedEvent;
 import org.drools.event.AfterPackageAddedEvent;
 import org.drools.event.AfterPackageRemovedEvent;
+import org.drools.event.AfterProcessAddedEvent;
+import org.drools.event.AfterProcessRemovedEvent;
 import org.drools.event.AfterRuleAddedEvent;
 import org.drools.event.AfterRuleBaseLockedEvent;
 import org.drools.event.AfterRuleBaseUnlockedEvent;
@@ -20,6 +26,8 @@ import org.drools.event.BeforeActivationFiredEvent;
 import org.drools.event.BeforeFunctionRemovedEvent;
 import org.drools.event.BeforePackageAddedEvent;
 import org.drools.event.BeforePackageRemovedEvent;
+import org.drools.event.BeforeProcessAddedEvent;
+import org.drools.event.BeforeProcessRemovedEvent;
 import org.drools.event.BeforeRuleAddedEvent;
 import org.drools.event.BeforeRuleBaseLockedEvent;
 import org.drools.event.BeforeRuleBaseUnlockedEvent;
@@ -28,11 +36,8 @@ import org.drools.event.ObjectInsertedEvent;
 import org.drools.event.ObjectRetractedEvent;
 import org.drools.event.ObjectUpdatedEvent;
 import org.drools.event.RuleBaseEventListener;
-import org.drools.event.RuleFlowCompletedEvent;
-import org.drools.event.RuleFlowEventListener;
 import org.drools.event.RuleFlowGroupActivatedEvent;
 import org.drools.event.RuleFlowGroupDeactivatedEvent;
-import org.drools.event.RuleFlowStartedEvent;
 import org.drools.event.WorkingMemoryEventListener;
 
 /**
@@ -42,7 +47,7 @@ import org.drools.event.WorkingMemoryEventListener;
  * @author lchan
  * @author $Author: lchan $
  */
-public abstract class LoggingEventListenerImpl implements RuleBaseEventListener, RuleFlowEventListener, WorkingMemoryEventListener,
+public abstract class LoggingEventListenerImpl implements RuleBaseEventListener, RuleFlowGroupListener, WorkingMemoryEventListener,
     AgendaEventListener {
   private enum LogLevel {
     TRACE, DEBUG, INFO, WARN, ERROR, FATAL;
@@ -101,247 +106,176 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
 
   protected abstract void log(EventObject e);
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterFunctionRemoved(AfterFunctionRemovedEvent)
-   */
+  protected abstract void log(String s);
+
   @Override
-  public void afterFunctionRemoved(AfterFunctionRemovedEvent arg0) {
-    log(arg0);
+  public void beforePackageAdded(BeforePackageAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterPackageAdded(AfterPackageAddedEvent)
-   */
   @Override
-  public void afterPackageAdded(AfterPackageAddedEvent arg0) {
-    log(arg0);
+  public void afterPackageAdded(AfterPackageAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterPackageRemoved(AfterPackageRemovedEvent)
-   */
   @Override
-  public void afterPackageRemoved(AfterPackageRemovedEvent arg0) {
-    log(arg0);
+  public void beforePackageRemoved(BeforePackageRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterRuleAdded(AfterRuleAddedEvent)
-   */
   @Override
-  public void afterRuleAdded(AfterRuleAddedEvent arg0) {
-    log(arg0);
+  public void afterPackageRemoved(AfterPackageRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterRuleBaseLocked(AfterRuleBaseLockedEvent)
-   */
   @Override
-  public void afterRuleBaseLocked(AfterRuleBaseLockedEvent arg0) {
-    log(arg0);
+  public void beforeRuleBaseLocked(BeforeRuleBaseLockedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterRuleBaseUnlocked(AfterRuleBaseUnlockedEvent)
-   */
   @Override
-  public void afterRuleBaseUnlocked(AfterRuleBaseUnlockedEvent arg0) {
-    log(arg0);
+  public void afterRuleBaseLocked(AfterRuleBaseLockedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#afterRuleRemoved(AfterRuleRemovedEvent)
-   */
   @Override
-  public void afterRuleRemoved(AfterRuleRemovedEvent arg0) {
-    log(arg0);
+  public void beforeRuleBaseUnlocked(BeforeRuleBaseUnlockedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforeFunctionRemoved(BeforeFunctionRemovedEvent)
-   */
   @Override
-  public void beforeFunctionRemoved(BeforeFunctionRemovedEvent arg0) {
-    log(arg0);
+  public void afterRuleBaseUnlocked(AfterRuleBaseUnlockedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforePackageAdded(BeforePackageAddedEvent)
-   */
   @Override
-  public void beforePackageAdded(BeforePackageAddedEvent arg0) {
-    log(arg0);
+  public void beforeRuleAdded(BeforeRuleAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforePackageRemoved(BeforePackageRemovedEvent)
-   */
   @Override
-  public void beforePackageRemoved(BeforePackageRemovedEvent arg0) {
-    log(arg0);
+  public void afterRuleAdded(AfterRuleAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforeRuleAdded(BeforeRuleAddedEvent)
-   */
   @Override
-  public void beforeRuleAdded(BeforeRuleAddedEvent arg0) {
-    log(arg0);
+  public void beforeRuleRemoved(BeforeRuleRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforeRuleBaseLocked(BeforeRuleBaseLockedEvent)
-   */
   @Override
-  public void beforeRuleBaseLocked(BeforeRuleBaseLockedEvent arg0) {
-    log(arg0);
+  public void afterRuleRemoved(AfterRuleRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforeRuleBaseUnlocked(BeforeRuleBaseUnlockedEvent)
-   */
   @Override
-  public void beforeRuleBaseUnlocked(BeforeRuleBaseUnlockedEvent arg0) {
-    log(arg0);
+  public void beforeProcessAdded(BeforeProcessAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleBaseEventListener#beforeRuleRemoved(BeforeRuleRemovedEvent)
-   */
   @Override
-  public void beforeRuleRemoved(BeforeRuleRemovedEvent arg0) {
-    log(arg0);
+  public void afterProcessAdded(AfterProcessAddedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleFlowEventListener#ruleFlowCompleted(RuleFlowCompletedEvent, WorkingMemory)
-   */
   @Override
-  public void ruleFlowCompleted(RuleFlowCompletedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void beforeProcessRemoved(BeforeProcessRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleFlowEventListener#ruleFlowGroupActivated(RuleFlowGroupActivatedEvent, WorkingMemory)
-   */
   @Override
-  public void ruleFlowGroupActivated(RuleFlowGroupActivatedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void afterProcessRemoved(AfterProcessRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleFlowEventListener#ruleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent, WorkingMemory)
-   */
   @Override
-  public void ruleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void beforeFunctionRemoved(BeforeFunctionRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see RuleFlowEventListener#ruleFlowStarted(RuleFlowStartedEvent, WorkingMemory)
-   */
   @Override
-  public void ruleFlowStarted(RuleFlowStartedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void afterFunctionRemoved(AfterFunctionRemovedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see WorkingMemoryEventListener#objectInserted(ObjectInsertedEvent)
-   */
   @Override
-  public void objectInserted(ObjectInsertedEvent arg0) {
-    log(arg0);
+  public void writeExternal(ObjectOutput out) throws IOException {
+    log("WriteExternal to : " + out);
   }
 
-  /**
-   *
-   * @see WorkingMemoryEventListener#objectRetracted(ObjectRetractedEvent)
-   */
   @Override
-  public void objectRetracted(ObjectRetractedEvent arg0) {
-    log(arg0);
+  public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    log("readExternal from : " + in);
   }
 
-  /**
-   *
-   * @see WorkingMemoryEventListener#objectUpdated(ObjectUpdatedEvent)
-   */
   @Override
-  public void objectUpdated(ObjectUpdatedEvent arg0) {
-    log(arg0);
+  public void objectInserted(ObjectInsertedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#activationCancelled(ActivationCancelledEvent, WorkingMemory)
-   */
   @Override
-  public void activationCancelled(ActivationCancelledEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void objectUpdated(ObjectUpdatedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#activationCreated(ActivationCreatedEvent, WorkingMemory)
-   */
   @Override
-  public void activationCreated(ActivationCreatedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void objectRetracted(ObjectRetractedEvent event) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#afterActivationFired(AfterActivationFiredEvent, WorkingMemory)
-   */
   @Override
-  public void afterActivationFired(AfterActivationFiredEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void activationCreated(ActivationCreatedEvent event, WorkingMemory workingMemory) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#agendaGroupPopped(AgendaGroupPoppedEvent, WorkingMemory)
-   */
   @Override
-  public void agendaGroupPopped(AgendaGroupPoppedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void activationCancelled(ActivationCancelledEvent event, WorkingMemory workingMemory) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#agendaGroupPushed(AgendaGroupPushedEvent,WorkingMemory)
-   */
   @Override
-  public void agendaGroupPushed(AgendaGroupPushedEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void beforeActivationFired(BeforeActivationFiredEvent event, WorkingMemory workingMemory) {
+    log(event);
   }
 
-  /**
-   *
-   * @see AgendaEventListener#beforeActivationFired(BeforeActivationFiredEvent, WorkingMemory)
-   */
   @Override
-  public void beforeActivationFired(BeforeActivationFiredEvent arg0, WorkingMemory arg1) {
-    log(arg0);
+  public void afterActivationFired(AfterActivationFiredEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void agendaGroupPopped(AgendaGroupPoppedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void agendaGroupPushed(AgendaGroupPushedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void beforeRuleFlowGroupActivated(RuleFlowGroupActivatedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void afterRuleFlowGroupActivated(RuleFlowGroupActivatedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void beforeRuleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void afterRuleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent event, WorkingMemory workingMemory) {
+    log(event);
+  }
+
+  @Override
+  public void ruleFlowGroupDeactivated() {
+    log("ruleFlowGroupDeactivated");
   }
 
 }

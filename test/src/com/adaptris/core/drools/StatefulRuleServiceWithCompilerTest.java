@@ -126,7 +126,6 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     service.setRuntimeRuleBase(compiler);
     service.setAgendaEventListener(new Slf4jLoggingEventListener());
     service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setRuleFlowEventListener(new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }

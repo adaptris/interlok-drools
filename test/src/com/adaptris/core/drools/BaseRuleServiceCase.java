@@ -103,7 +103,6 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
   protected static void start(RuleServiceImpl service, boolean useClog) throws Exception {
     service.setAgendaEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
     service.setRuleBaseEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
-    service.setRuleFlowEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(useClog ? new CommonsLoggingEventListener() : new Slf4jLoggingEventListener());
     LifecycleHelper.init(service);
     LifecycleHelper.start(service);

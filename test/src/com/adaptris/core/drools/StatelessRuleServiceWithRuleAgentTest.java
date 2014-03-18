@@ -39,7 +39,6 @@ public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
     service.setResolver(bean);
     service.setAgendaEventListener(new Slf4jLoggingEventListener());
     service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setRuleFlowEventListener(new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }

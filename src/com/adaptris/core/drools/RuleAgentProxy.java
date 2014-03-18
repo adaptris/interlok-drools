@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adaptris.core.CoreException;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.adaptris.util.KeyValuePairSet;
 import com.adaptris.util.license.License;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Proxy for creating a rule agent.
@@ -138,112 +138,9 @@ public class RuleAgentProxy implements RuleBaseProxy {
   /**
    * Set the properties used to create the RuleAgent.
    * <p>
-   * Valid properties are (taken from the Drools manual).
-   * <ul>
-   * <li>newInstance=true</li>
-   * <li>file=/foo/bar/boo.pkg /foo/bar/boo2.pkg</li>
-   * <li>dir=/my/dir</li>
-   * <li>url=http://some.url/here http://some.url/here</li>
-   * <li>localCacheDir=/foo/bar/cache</li>
-   * <li>poll=30</li>
-   * <li>name=MyConfig</li>
-   * </ul>
+   * Check the Drools manual for the valid properties; the key of the key-value-pair is the property name, the value the value.
    * </p>
-   * <p>
-   * <li>
-   * <p>
-   * newInstance
-   * </p>
-   * <p>
-   * Setting this to "true" means that the RuleBase instance will be created
-   * fresh each time there is a change. this means you need to do
-   * agent.getRuleBase() to get the new updated rulebase (any existing ones in
-   * use will be untouched). The default is false, which means rulebases are
-   * updated "in place" - ie you don't need to keep calling getRuleBase() to
-   * make sure you have the latest rules (also any StatefulSessions will be
-   * updated automatically with rule changes). <b>If set to true, then the
-   * adapter will not refresh its rules automatically, and will require a
-   * reinitialisation of the service before rule changes are picked up.</b>
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * file
-   * </p>
-   * <p>
-   * This is a space-separated list of files - each file is a binary package as
-   * exported by the BRMS. You can have one or many. The name of the file is not
-   * important. Each package must be in its own file.
-   * </p>
-   * <p>
-   * NOTE: it is also possible to specify .drl files - and it will compile it
-   * into the package. However, note that for this to work, you will need the
-   * drools-compiler dependencies in your applications classpath (as opposed to
-   * just the runtime dependencies).
-   * </p>
-   * <p>
-   * Please note that if the path has a space in it, you will need to put double
-   * quotes around it (as the space is used to separate different items, and it
-   * will not work otherwise). Generally spaces in a path name are best to
-   * avoid.
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * dir
-   * </p>
-   * <p>
-   * This is similar to file, except that instead of specifying a list of files
-   * you specify a directory, and it will pick up all the files in there (each
-   * one is a package) and add them to the rulebase. Each package must be in its
-   * own file.
-   * </p>
-   * <p>
-   * Please note that if the path has a space in it, you will need to put double
-   * quotes around it (as the space is used to separate different items, and it
-   * will not work otherwise). Generally spaces in a path name are best to
-   * avoid.
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * url
-   * </p>
-   * <p>
-   * This is a space separated list of URLs to the BRMS which is exposing the
-   * packages (see below for more details).
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * localCacheDir
-   * </p>
-   * <p>
-   * This is used in conjunction with the url above, so that if the BRMS is down
-   * (the url is not accessible) then if the runtime has to start up, it can
-   * start up with the last known "good" versions of the packages.
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * poll
-   * </p>
-   * <p>
-   * This is set to the number of seconds to check for changes to the resources
-   * (a timer is used).
-   * </p>
-   * </li>
-   * <li>
-   * <p>
-   * name
-   * </p>
-   * <p>
-   * This is used to specify the name of the agent which is used when logging
-   * events (as typically you would have multiple agents in a system).
-   * </p>
-   * </li></ul>
-   * </p>
-   *
+   * 
    * @param kvps the ruleAgentProperties to set
    */
   public void setRuleAgentProperties(KeyValuePairSet kvps) {
@@ -275,12 +172,6 @@ public class RuleAgentProxy implements RuleBaseProxy {
     private String name;
 
     @Override
-    public void exception(Exception e) {
-      logR.error("RuleAgent(" + name + ") : " + e.getMessage()
-          + ". Stack trace should follow.", e);
-    }
-
-    @Override
     public void info(String message) {
       logR.info("RuleAgent(" + name + ") : " + message);
     }
@@ -299,5 +190,33 @@ public class RuleAgentProxy implements RuleBaseProxy {
     public void setAgentName(String s) {
       name = s;
     }
+
+    @Override
+    public void info(String message, Object object) {
+      logR.info("RuleAgent(" + name + ") : Message[" + message + "] Object[" + object + "]");
+    }
+
+    @Override
+    public void warning(String message, Object object) {
+      logR.warn("RuleAgent(" + name + ") : Message[" + message + "] Object[" + object + "]");
+    }
+
+
+    @Override
+    public void debug(String message, Object object) {
+      logR.debug("RuleAgent(" + name + ") : Message[" + message + "] Object[" + object + "]");
+
+    }
+
+    @Override
+    public void exception(String message, Throwable e) {
+      logR.error("RuleAgent(" + name + ") : Message[" + message + "]", e);
+    }
+
+    @Override
+    public void exception(Throwable e) {
+      logR.error("RuleAgent(" + name + ") : " + e.getMessage() + ". Stack trace should follow.", e);
+    }
+
   }
 }

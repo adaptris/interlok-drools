@@ -4,7 +4,6 @@ import org.drools.RuleBase;
 import org.drools.WorkingMemoryEventManager;
 import org.drools.event.AgendaEventListener;
 import org.drools.event.RuleBaseEventListener;
-import org.drools.event.RuleFlowEventListener;
 import org.drools.event.WorkingMemoryEventListener;
 
 import com.adaptris.core.CoreException;
@@ -28,7 +27,6 @@ public abstract class RuleServiceImpl extends ServiceImp {
   protected transient RuleBase ruleBase;
   private RuleBaseProxy runtimeRuleBase;
   private RuleBaseEventListener ruleBaseEventListener = null;
-  private RuleFlowEventListener ruleFlowEventListener = null;
   private WorkingMemoryEventListener workingMemoryEventListener = null;
   private AgendaEventListener agendaEventListener = null;
 
@@ -49,11 +47,6 @@ public abstract class RuleServiceImpl extends ServiceImp {
     if (ruleBaseEventListener != null) {
       if (!m.getRuleBaseEventListeners().contains(ruleBaseEventListener)) {
         m.addEventListener(ruleBaseEventListener);
-      }
-    }
-    if (ruleFlowEventListener != null) {
-      if (!m.getRuleFlowEventListeners().contains(ruleFlowEventListener)) {
-        m.addEventListener(ruleFlowEventListener);
       }
     }
     if (agendaEventListener != null) {
@@ -187,20 +180,6 @@ public abstract class RuleServiceImpl extends ServiceImp {
    */
   public void setRuleBaseEventListener(RuleBaseEventListener l) {
     ruleBaseEventListener = l;
-  }
-
-  /**
-   * @return the ruleFlowEventListener
-   */
-  public RuleFlowEventListener getRuleFlowEventListener() {
-    return ruleFlowEventListener;
-  }
-
-  /**
-   * @param l the ruleFlowEventListener to set
-   */
-  public void setRuleFlowEventListener(RuleFlowEventListener l) {
-    ruleFlowEventListener = l;
   }
 
   /**

@@ -1,12 +1,12 @@
 package com.adaptris.core.drools;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 import java.util.EventObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Implementation of all the event listener interfaces that simply logs with the specified category using the slf4j interfaces.
@@ -67,6 +67,11 @@ public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
   @Override
   protected void log(EventObject e) {
     LogHandler.valueOf(getLogLevel()).log(LoggerFactory.getLogger(getCategory()), e.toString());
+  }
+
+  @Override
+  protected void log(String s) {
+    LogHandler.valueOf(getLogLevel()).log(LoggerFactory.getLogger(getCategory()), s);
   }
 
 }
