@@ -9,7 +9,7 @@ rule "New Ticket"
 		customer : Customer( )
 		ticket : Ticket( customer == customer, status == "New" )
 	then
-		# System.out.println( "New : " + ticket );
+		System.out.println( "New : " + ticket );
 end
 
 rule "Silver Priority"
@@ -52,9 +52,9 @@ rule "Done"
 		customer : Customer( )
 		ticket : Ticket( customer == customer, status == "Done" )
 	then
-		# System.out.println( "Done : " + ticket );
+	 System.out.println( "Done : " + ticket );
 end
 
 function void sendEscalationEmail( Customer customer, Ticket ticket ) {
-	# System.out.println( "Email : " + ticket );
+	System.out.println( "Email : " + ticket );
 }

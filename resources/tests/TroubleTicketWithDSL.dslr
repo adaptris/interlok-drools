@@ -1,4 +1,8 @@
 package com.adaptris.core.drools.ticket
+
+import com.adaptris.core.drools.ticket.Customer;
+import com.adaptris.core.drools.ticket.Ticket;
+
 expander ticketing.dsl
 
 
@@ -11,7 +15,6 @@ rule "New Ticket"
 end
 
 rule "Silver Priorty"
-	#if after a certain time, we still have an issue, then escalate
 	duration 3000
 	when
     	There is a "Silver" customer with a ticket status of "New"
@@ -29,7 +32,6 @@ rule "Gold Priority"
 end
 
 rule "Platinum Priority"
-	#we don't want to make the high rollers wait !
 	when
 		There is a "Platinum" customer with a ticket status of "New"
 	then
@@ -52,11 +54,7 @@ rule "Done"
 		Log "Done"
 end
 
-# This is the same as the non DSL version. This could be kept in another file of course.
 function void sendEscalationEmail( Customer customer, Ticket ticket ) {
-	# System.out.println( "Email : " + ticket );
+	System.out.println( "Email : " + ticket );
 }
 
-#hey, the imports can appear anywhere !
-import com.adaptris.core.drools.ticket.Customer;
-import com.adaptris.core.drools.ticket.Ticket;
