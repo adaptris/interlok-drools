@@ -36,7 +36,7 @@ public class PayloadMapper extends JavabeanMapper {
   void translate(Object obj, AdaptrisMessage msg) throws Exception {
     logR.trace("Calling get" + getFieldName() + "()");
     Object o = invokeGetter(obj, getFieldName());
-    msg.setStringPayload(getFieldType().unwrap(o));
+    msg.setStringPayload(getFieldType().unwrap(o), msg.getCharEncoding());
   }
 
 }
