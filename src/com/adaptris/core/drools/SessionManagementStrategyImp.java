@@ -3,9 +3,13 @@ package com.adaptris.core.drools;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.LicensedComponent;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 
 /**
  * Abstract base class for management of a Drools Session.
+ * <p>
+ * Requires a Standard license
+ * </p>
  * 
  * @author lchan
  * @author $Author: lchan $
@@ -45,6 +49,6 @@ public abstract class SessionManagementStrategyImp implements
    */
   @Override
   public boolean isEnabled(License license) throws CoreException {
-    return license.isEnabled(License.ENTERPRISE);
+    return license.isEnabled(LicenseType.Standard);
   }
 }

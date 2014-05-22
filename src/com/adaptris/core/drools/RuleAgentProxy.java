@@ -16,6 +16,7 @@ import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.KeyValuePairSet;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -34,6 +35,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * <p>
  * In the adapter configuration file this class is aliased as <b>drools-rule-agent-proxy</b> which is the preferred alternative to
  * the fully qualified classname when building your configuration.
+ * </p>
+ * 
+ * <p>
+ * Requires a Standard license
  * </p>
  * 
  * @author lchan
@@ -59,13 +64,8 @@ public class RuleAgentProxy implements RuleBaseProxy {
     setRuleAgentProperties(new KeyValuePairSet());
   }
 
-  /**
-   * 
-   * @see com.adaptris.core.LicensedComponent#isEnabled(License)
-   */
-  @Override
   public boolean isEnabled(License l) throws CoreException {
-    return l.isEnabled(License.ENTERPRISE);
+    return l.isEnabled(LicenseType.Standard);
   }
 
   /**

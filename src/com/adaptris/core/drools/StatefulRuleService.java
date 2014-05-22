@@ -11,19 +11,21 @@ import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
 import com.adaptris.core.util.LifecycleHelper;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Stateful JBoss Rules Engine execution.
- *
+ * 
  * <p>
- * Requires an ENTERPRISE license.
+ * Requires a Standard license.
  * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-stateful-rule-service</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
+ * 
+ * <p>
+ * In the adapter configuration file this class is aliased as <b>drools-stateful-rule-service</b> which is the preferred alternative
+ * to the fully qualified classname when building your configuration.
  * </p>
-
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
@@ -78,7 +80,7 @@ public class StatefulRuleService extends RuleServiceImpl {
 
   @Override
   protected boolean serviceIsEnabled(License l) throws CoreException {
-    return l.isEnabled(License.ENTERPRISE);
+    return l.isEnabled(LicenseType.Standard);
   }
 
   @Override

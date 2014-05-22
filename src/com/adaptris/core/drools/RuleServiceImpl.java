@@ -13,14 +13,15 @@ import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceImp;
 import com.adaptris.core.util.LifecycleHelper;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 
 /**
  * Abstract Entry point into the JBoss Rules Engine.
- *
+ * 
  * <p>
- * Requires an ENTERPRISE license.
+ * Requires a Standard license.
  * </p>
- *
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
@@ -135,7 +136,7 @@ public abstract class RuleServiceImpl extends ServiceImp {
     if (getRuntimeRuleBase() != null) {
       ruleBaseEnabled = getRuntimeRuleBase().isEnabled(l);
     }
-    return l.isEnabled(License.ENTERPRISE) && resolverEnabled
+    return l.isEnabled(LicenseType.Standard) && resolverEnabled
         && ruleBaseEnabled && serviceIsEnabled(l);
   }
 

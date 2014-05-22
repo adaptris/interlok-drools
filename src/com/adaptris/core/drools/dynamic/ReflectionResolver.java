@@ -16,15 +16,21 @@ import com.adaptris.core.CoreException;
 import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Class for manipulating java beans using Reflection.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-reflection-resolver</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
+ * 
+ * <p>
+ * In the adapter configuration file this class is aliased as <b>drools-reflection-resolver</b> which is the preferred alternative
+ * to the fully qualified classname when building your configuration.
  * </p>
- 
+ * *
+ * <p>
+ * Requires a Standard license
+ * </p>
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
@@ -151,7 +157,7 @@ public class ReflectionResolver implements Resolver {
    */
   @Override
   public boolean isEnabled(License l) {
-    return l.isEnabled(License.ENTERPRISE);
+    return l.isEnabled(LicenseType.Standard);
   }
 
   /**

@@ -30,12 +30,16 @@ import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
 import com.adaptris.util.URLString;
 import com.adaptris.util.license.License;
+import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 /**
- * Abstract Entry point for creating a RuleBase for using the JBoss Rules
- * Engine.
- *
+ * Abstract Entry point for creating a RuleBase for using the JBoss Rules Engine.
+ * 
+ * <p>
+ * All concrete implementations of this class require a Standard license
+ * </p>
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
@@ -58,7 +62,7 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
    * @see com.adaptris.core.LicensedComponent#isEnabled(License)
    */
   public boolean isEnabled(License l) throws CoreException {
-    return l.isEnabled(License.ENTERPRISE);
+    return l.isEnabled(LicenseType.Standard);
   }
 
   /**
