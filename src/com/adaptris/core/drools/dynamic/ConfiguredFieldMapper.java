@@ -6,14 +6,11 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Provide a statically configured field as a field.
  * <p>
- * This only provides a one-way mapping from AdaptrisMessage only. Mapping back
- * to AdaptrisMessage is not possible.
+ * This only provides a one-way mapping from AdaptrisMessage only. Mapping back to AdaptrisMessage is not possible.
  * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-configured-field</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-configured-field
+ * 
  * @author lchan
  * @author $Author: lchan $
  */

@@ -11,11 +11,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Implementation of all the event listener interfaces that simply logs with the specified category using the slf4j interfaces.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>slf4j-logging-event-listener</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-slf4j-logging-event-listener
  * @author lchan
  * @author $Author: lchan $
  */

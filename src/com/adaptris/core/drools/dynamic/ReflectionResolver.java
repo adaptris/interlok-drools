@@ -22,14 +22,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Class for manipulating java beans using Reflection.
  * 
- * <p>
- * In the adapter configuration file this class is aliased as <b>drools-reflection-resolver</b> which is the preferred alternative
- * to the fully qualified classname when building your configuration.
- * </p>
- * *
- * <p>
- * Requires a Standard license
- * </p>
+ * @config drools-reflection-resolver
  * 
  * @author lchan
  * @author $Author: lchan $

@@ -32,14 +32,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * such cases results may be undefined.
  * </p>
  * 
- * <p>
- * In the adapter configuration file this class is aliased as <b>drools-rule-agent-proxy</b> which is the preferred alternative to
- * the fully qualified classname when building your configuration.
- * </p>
- * 
- * <p>
- * Requires a Standard license
- * </p>
+ * @config drools-rule-agent-proxy
+ * @license STANDARD
  * 
  * @author lchan
  * @author $Author: lchan $

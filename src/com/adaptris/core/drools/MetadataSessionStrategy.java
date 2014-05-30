@@ -9,21 +9,15 @@ import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * Session management strategy that retains the same session until a certain
- * metadata key is set on the message.
+ * Session management strategy that retains the same session until a certain metadata key is set on the message.
  * <p>
- * The StatefulSession is created upon the first invocation of
- * {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when the
- * AdaptrisMessage contains the configurable metadata key.
+ * The StatefulSession is created upon the first invocation of {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when
+ * the AdaptrisMessage contains the configurable metadata key.
  * </p>
- * <p>
- * Requires an ENTERPRISE license.
- * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-metadata-session-strategy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-metadata-session-strategy
+ * @license STANDARD
+ * 
  * @author lchan
  * @author $Author: lchan $
  */

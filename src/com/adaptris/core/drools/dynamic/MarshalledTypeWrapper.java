@@ -6,18 +6,14 @@ import com.adaptris.core.DefaultMarshaller;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * TypeWrapper implementation that wraps and unwraps to and from XML using an
- * XML Marshaller (generally Castor).
+ * TypeWrapper implementation that wraps and unwraps to and from XML using an XML Marshaller (generally Castor).
  * <p>
- * The anticipated use for this is to allow a concrete {@link JavabeanMapper}
- * instance such as {@link ConfiguredFieldMapper} to insert objects of arbitary
- * types into the bean.
+ * The anticipated use for this is to allow a concrete {@link JavabeanMapper} instance such as {@link ConfiguredFieldMapper} to
+ * insert objects of arbitary types into the bean.
  * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-marshalled-type-wrapper</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-marshaled-type-wrapper
+ * 
  * @author lchan
  * @see JavabeanMapper
  */

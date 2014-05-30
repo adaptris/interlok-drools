@@ -19,14 +19,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Stateful JBoss Rules Engine execution using a Ruleflow.
  * 
- * <p>
- * Requires an Standard license.
- * </p>
- * 
- * <p>
- * In the adapter configuration file this class is aliased as <b>drools-stateful-rule-flow-service</b> which is the preferred
- * alternative to the fully qualified classname when building your configuration.
- * </p>
+ * @config drools-stateful-rule-flow-service
+ * @license STANDARD
  * 
  * @author lchan
  * @author $Author: lchan $

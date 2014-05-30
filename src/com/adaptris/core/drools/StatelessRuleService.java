@@ -12,14 +12,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Stateless JBoss Rules Engine execution.
  * 
- * <p>
- * Requires a Standard license.
- * </p>
- * 
- * <p>
- * In the adapter configuration file this class is aliased as <b>drools-stateless-rule-service</b> which is the preferred
- * alternative to the fully qualified classname when building your configuration.
- * </p>
+ * @config drools-stateless-rule-service
+ * @license STANDARD
  * 
  * @author lchan
  * @author $Author: lchan $

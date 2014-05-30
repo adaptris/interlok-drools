@@ -15,27 +15,20 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 /**
  * Entry point for creating a RuleBase for using the JBoss Rules Engine.
  * <p>
- * This compiles the Rules from the configured source <code>.drl</code> files
- * upon initialisation.
+ * This compiles the Rules from the configured source <code>.drl</code> files upon initialisation.
  * </p>
  * <p>
- * Generally speaking you should be using {@link RuleAgentProxy} in
- * production as this allows you to use precompiled rules and RuleFlows that
- * have already been packaged for use.
+ * Generally speaking you should be using {@link RuleAgentProxy} in production as this allows you to use precompiled rules and
+ * RuleFlows that have already been packaged for use.
  * <p>
  * <p>
- * A single PackageBuilder instance is used within this service; this means that
- * all the referenced rule sources should belong in the same package.
+ * A single PackageBuilder instance is used within this service; this means that all the referenced rule sources should belong in
+ * the same package.
  * </p>
- * <p>
- * Requires an ENTERPRISE license.
- * </p>
- *
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-compiling-rule-base-proxy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
-
+ * 
+ * @config drools-compiling-rule-base-proxy
+ * @license STANDARD
+ * 
  * @author lchan
  * @author $Author: lchan $
  */

@@ -5,13 +5,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Map the AdaptrisMessage payload to a specific field.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-payload-field</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-payload-field
  * @author lchan
- *
+ * 
  */
 @XStreamAlias("drools-payload-field")
 public class PayloadMapper extends JavabeanMapper {

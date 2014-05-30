@@ -10,11 +10,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Wraps simple types
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-simple-type</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-simple-type
+ * 
  * @author lchan
  * @see JavabeanMapper
  */

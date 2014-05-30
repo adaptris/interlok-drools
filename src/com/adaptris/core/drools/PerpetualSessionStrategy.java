@@ -7,22 +7,15 @@ import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * Session management strategy that retains the same session for the lifetime of
- * the component.
+ * Session management strategy that retains the same session for the lifetime of the component.
  * <p>
- * The StatefulSession is created upon the first invocation of
- * {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when this
- * component's {@link #stop()} method is invoked as part of the parent
- * {@link StatefulRuleService} lifecycle.
+ * The StatefulSession is created upon the first invocation of {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when
+ * this component's {@link #stop()} method is invoked as part of the parent {@link StatefulRuleService} lifecycle.
  * </p>
- * <p>
- * Requires an ENTERPRISE license.
- * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-perpetual-session-strategy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-perpetual-session-strategy
+ * @license STANDARD
+ * 
  * @author lchan
  * @author $Author: lchan $
  */

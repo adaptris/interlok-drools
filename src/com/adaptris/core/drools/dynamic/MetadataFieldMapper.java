@@ -7,11 +7,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * Map between AdaptrisMessage and a specific field within an object.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-metadata-field</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-metadata-field
+ * 
  * @author lchan
  * @see ReflectionResolver
  * @see JavabeanMapper

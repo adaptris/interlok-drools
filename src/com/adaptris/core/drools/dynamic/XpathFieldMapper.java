@@ -12,15 +12,12 @@ import com.adaptris.util.text.xml.SimpleNamespaceContext;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * Resolve an XPath on the AdaptrisMessage payload and use that value as a
- * field.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-xpath-field</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * Resolve an XPath on the AdaptrisMessage payload and use that value as a field.
+ * 
+ * @config drools-xpath-field
+ * 
  * @author lchan
- *
+ * 
  */
 @XStreamAlias("drools-xpath-field")
 public class XpathFieldMapper extends JavabeanMapper {

@@ -9,22 +9,15 @@ import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * Session management strategy that retains the same session for a configurable
- * length of time.
+ * Session management strategy that retains the same session for a configurable length of time.
  * <p>
- * The StatefulSession is created upon the first invocation of
- * {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when the
- * interval between calls to {@link #getSession(RuleBase, AdaptrisMessage)}
- * exceeds the configured number of seconds..
+ * The StatefulSession is created upon the first invocation of {@link #getSession(RuleBase, AdaptrisMessage)} and is disposed when
+ * the interval between calls to {@link #getSession(RuleBase, AdaptrisMessage)} exceeds the configured number of seconds..
  * </p>
- * <p>
- * Requires an ENTERPRISE license.
- * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-timed-session-strategy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-timed-session-strategy
+ * @license STANDARD
+ * 
  * @author lchan
  * @author $Author: lchan $
  */

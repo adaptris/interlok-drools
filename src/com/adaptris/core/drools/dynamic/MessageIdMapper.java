@@ -4,14 +4,10 @@ import com.adaptris.core.AdaptrisMessage;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * XStream marshalling tag - <drools-message-id-mapper>
- * Map between AdaptrisMessage unique id and a specific field within an
- * Object.
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-message-id-field</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * Map between AdaptrisMessage unique id and a specific field within an Object.
+ * 
+ * @config message-id-mapper
+ * 
  * @author lchan
  */
 @XStreamAlias("drools-message-id-field")

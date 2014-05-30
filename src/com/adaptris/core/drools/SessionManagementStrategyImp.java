@@ -7,9 +7,6 @@ import com.adaptris.util.license.License.LicenseType;
 
 /**
  * Abstract base class for management of a Drools Session.
- * <p>
- * Requires a Standard license
- * </p>
  * 
  * @author lchan
  * @author $Author: lchan $

@@ -9,17 +9,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * Default management of the session.
  * <p>
- * The strategy here is to create a new session each time
- * {@link #getSession(RuleBase, AdaptrisMessage)} is invoked.
+ * The strategy here is to create a new session each time {@link #getSession(RuleBase, AdaptrisMessage)} is invoked.
  * </p>
- * <p>
- * Requires an ENTERPRISE license.
- * </p>
- ** <p>
- * In the adapter configuration file this class is aliased as <b>drools-per-message-session-strategy</b> which is the preferred alternative to the
- * fully qualified classname when building your configuration.
- * </p>
- 
+ * 
+ * @config drools-per-message-session-strategy
+ * @license STANDARD
+ * 
  * @author lchan
  * @author $Author: lchan $
  */
