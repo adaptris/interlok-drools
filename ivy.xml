@@ -70,7 +70,6 @@
 
     <exclude org="asm"/>
     <exclude org="commons-logging"/>
-    <exclude org="org.apache.geronimo.specs"/>
     <exclude org="org.apache.ant" artifact="ant"/>
     <exclude org="org.apache.ant" artifact="ant-launcher"/>
     <exclude org="ant"/>
