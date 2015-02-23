@@ -12,7 +12,7 @@
 
     <property name="ivy.publish.revision" value="3.0-SNAPSHOT"/>  <!-- Version number of this artifact -->
     <property name="adp-core-version" value="3.0-SNAPSHOT"/>
-
+    <property name="manifest.title" value="Interlok/JBoss Rules Integration"/>
     <property name="src.dir" value="${basedir}/src"/>
     <property name="build-util.lib.dir"     value="${basedir}/../build-util"/>
 
@@ -80,12 +80,12 @@
   </target>
 
   <target name="jar.resources" depends="prepare">
-    <adapter:create-manifest file="${build.dir}/Manifest.mf" title="Interlok/JBoss Rules Integration"/>
+    <adapter:create-manifest file="${build.dir}/Manifest.mf" title="${manifest.title}"/>
   </target>
 
 
   <target name="jar" depends="compile, jar.resources" description="Build a jar file">
-    <adapter:create-jar basedir="${classes.build.dir}" jarfile="${project.dist.dir}/${project.jar.name}" manifest="${build.dir}/Manifest.mf" />
+    <adapter:create-jar basedir="${classes.build.dir}" jarfile="${project.dist.dir}/${project.jar.name}" manifest="${build.dir}/Manifest.mf" version-title="${manifest.title}" />
   </target>
 
   <target name="javadoc" depends="prepare-ivy" description="Create javadocs">
