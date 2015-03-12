@@ -13,4 +13,8 @@ public abstract class DroolsServiceExample extends ServiceCase {
     }
   }
 
+  @Override
+  protected boolean doStateTests() {
+    return false;
+  }
 }
