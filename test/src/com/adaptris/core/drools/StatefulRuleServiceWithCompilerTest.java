@@ -117,7 +117,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     compiler.getRuleSources().addKeyValuePair(
         new KeyValuePair("http://myserver.com/myDomainRuleFile2", "http://myserver.com/MyDomainSpecificLanguageFile"));
     service.setRuntimeRuleBase(compiler);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LogLevel.INFO));
+    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
     service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
     service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;

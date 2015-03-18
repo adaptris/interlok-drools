@@ -63,18 +63,18 @@ public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
     super();
   }
 
-  public Slf4jLoggingEventListener(String category, LogLevel level) {
+  public Slf4jLoggingEventListener(String category, LoggingLevel level) {
     super(category, level);
   }
 
   @Override
   protected void log(EventObject e) {
-    LogHandler.valueOf(getLogLevel()).log(LoggerFactory.getLogger(getCategory()), e.toString());
+    LogHandler.valueOf(getLogLevel().name()).log(LoggerFactory.getLogger(getCategory()), e.toString());
   }
 
   @Override
   protected void log(String s) {
-    LogHandler.valueOf(getLogLevel()).log(LoggerFactory.getLogger(getCategory()), s);
+    LogHandler.valueOf(getLogLevel().name()).log(LoggerFactory.getLogger(getCategory()), s);
   }
 
 }

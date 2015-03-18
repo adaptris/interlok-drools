@@ -1,9 +1,8 @@
 package com.adaptris.core.drools.dynamic;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -133,8 +132,8 @@ public class SimpleType implements TypeWrapper {
     abstract Object wrap(String s);
   }
 
-  @Pattern(regexp = "BIGDECIMAL|BOOLEAN|DOUBLE|FLOAT|INTEGER|LONG|STRING")
-  private String type;
+  @NotNull
+  private Type type;
 
   public SimpleType() {
 
@@ -142,18 +141,13 @@ public class SimpleType implements TypeWrapper {
 
   public SimpleType(Type s) {
     this();
-    setType(s.name());
-  }
-
-  public SimpleType(String s) {
-    this();
     setType(s);
   }
 
   /**
    * @return the type
    */
-  public String getType() {
+  public Type getType() {
     return type;
   }
 
@@ -163,7 +157,7 @@ public class SimpleType implements TypeWrapper {
    * @param s the specific type of this field.
    * @see Type
    */
-  public void setType(String s) {
+  public void setType(Type s) {
     type = s;
   }
 
@@ -173,17 +167,10 @@ public class SimpleType implements TypeWrapper {
    */
   @Override
   public String unwrap(Object o) throws Exception {
-    Type f = null;
-    try {
-      f = Type.valueOf(type.toUpperCase());
+    if (getType() == null) {
+      throw new Exception(getType() + " not supported as a SimpleType");
     }
-    catch (IllegalArgumentException e) {
-      IOException ioe = new IOException(type
-          + " is not supported as a SimpleType");
-      ioe.initCause(e);
-      throw ioe;
-    }
-    return f.unwrap(o);
+    return getType().unwrap(o);
   }
 
   /**
@@ -192,17 +179,10 @@ public class SimpleType implements TypeWrapper {
    */
   @Override
   public Object wrap(String s) throws Exception {
-    Type f = null;
-    try {
-      f = Type.valueOf(type.toUpperCase());
+    if (getType() == null) {
+      throw new Exception(getType() + " not supported as a SimpleType");
     }
-    catch (IllegalArgumentException e) {
-      IOException ioe = new IOException(type
-          + " is not supported as a SimpleType");
-      ioe.initCause(e);
-      throw ioe;
-    }
-    return f.wrap(s);
+    return getType().wrap(s);
   }
 
 }

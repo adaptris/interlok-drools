@@ -7,8 +7,6 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.EventObject;
 
-import javax.validation.constraints.Pattern;
-
 import org.drools.WorkingMemory;
 import org.drools.common.RuleFlowGroupListener;
 import org.drools.event.ActivationCancelledEvent;
@@ -56,27 +54,23 @@ import com.adaptris.annotation.AutoPopulated;
  */
 public abstract class LoggingEventListenerImpl implements RuleBaseEventListener, RuleFlowGroupListener, WorkingMemoryEventListener,
     AgendaEventListener {
-  public enum LogLevel {
+  public enum LoggingLevel {
     TRACE, DEBUG, INFO, WARN, ERROR, FATAL;
   }
 
-  @Pattern(regexp = "TRACE|DEBUG|INFO|WARN|ERROR|FATAL")
   @AutoPopulated
-  private String logLevel;
+  private LoggingLevel logLevel;
   @AutoPopulated
   @NotBlank
   private String category;
 
   public LoggingEventListenerImpl() {
     setCategory(this.getClass().getCanonicalName());
-    setLogLevel(LogLevel.TRACE.name());
+    setLogLevel(LoggingLevel.TRACE);
   }
 
-  public LoggingEventListenerImpl(String category, LogLevel level) {
-    this(category, level.name());
-  }
-
-  public LoggingEventListenerImpl(String category, String level) {
+  public LoggingEventListenerImpl(String category, LoggingLevel level) {
+    this();
     setCategory(category);
     setLogLevel(level);
   }
@@ -106,7 +100,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
    * 
    * @return the log level
    */
-  public String getLogLevel() {
+  public LoggingLevel getLogLevel() {
     return logLevel;
   }
 
@@ -115,13 +109,11 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
    * 
    * @param s the log level, one of "TRACE", "DEBUG", "INFO" "WARN", "ERROR", "FATAL". The default is "TRACE"
    */
-  public void setLogLevel(String s) {
-    try {
-      logLevel = LogLevel.valueOf(s.toUpperCase()).name();
+  public void setLogLevel(LoggingLevel s) {
+    if (s == null) {
+      throw new IllegalArgumentException("Null Loglevel");
     }
-    catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException(s + " not supported as a LogLevel");
-    }
+    logLevel = s;
   }
 
   protected abstract void log(EventObject e);
