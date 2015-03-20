@@ -34,8 +34,11 @@ public abstract class RuleServiceImpl extends ServiceImp {
   @NotNull
   @Valid
   private RuleBaseProxy runtimeRuleBase;
+  @Valid
   private RuleBaseEventListener ruleBaseEventListener = null;
+  @Valid
   private WorkingMemoryEventListener workingMemoryEventListener = null;
+  @Valid
   private AgendaEventListener agendaEventListener = null;
 
   public RuleServiceImpl() {

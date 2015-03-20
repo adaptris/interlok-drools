@@ -20,24 +20,15 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("drools-marshalled-type-wrapper")
 public class MarshalledTypeWrapper implements TypeWrapper {
   private AdaptrisMarshaller marshaller;
-  private String marshalledClassname;
 
   public MarshalledTypeWrapper() throws Exception {
-    this(null, DefaultMarshaller.getDefaultMarshaller());
+    this(DefaultMarshaller.getDefaultMarshaller());
   }
 
   public MarshalledTypeWrapper(AdaptrisMarshaller m) {
-    this(null, m);
-  }
-
-  public MarshalledTypeWrapper(String classname) throws Exception {
-    setMarshalledClassname(classname);
-  }
-
-  public MarshalledTypeWrapper(String classname, AdaptrisMarshaller m) {
-    setMarshalledClassname(classname);
     setMarshaller(m);
   }
+
 
   /**
    *
@@ -55,20 +46,6 @@ public class MarshalledTypeWrapper implements TypeWrapper {
   @Override
   public Object wrap(String s) throws Exception {
     return currentMarshaller().unmarshal(s);
-  }
-
-  /**
-   * @return the marshalledClassname
-   */
-  public String getMarshalledClassname() {
-    return marshalledClassname;
-  }
-
-  /**
-   * Set the classname that will be assumed for marshalling purposes.
-   */
-  public void setMarshalledClassname(String s) {
-    marshalledClassname = s;
   }
 
   /**

@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.drools.RuleBase;
@@ -46,6 +47,7 @@ public class RuleAgentProxy implements RuleBaseProxy {
   @AutoPopulated
   private KeyValuePairSet ruleAgentProperties;
   private transient RuleAgent ruleAgent;
+  @Valid
   private AgentEventListener agentEventListener;
 
   private static final Map<Properties, RuleAgent> RULEAGENT_HASH;

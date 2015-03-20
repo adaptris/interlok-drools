@@ -75,8 +75,7 @@ public class TestTypeWrapper {
     JdbcConnection c = new JdbcConnection();
     c.setConnectUrl("connecturl");
     String xml = cm.marshal(c);
-    MarshalledTypeWrapper w = new MarshalledTypeWrapper(c.getClass()
-        .getCanonicalName());
+    MarshalledTypeWrapper w = new MarshalledTypeWrapper();
     assertEquals(xml, w.unwrap(w.wrap(xml)));
   }
 }
