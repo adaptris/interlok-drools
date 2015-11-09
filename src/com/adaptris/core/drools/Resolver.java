@@ -2,6 +2,7 @@ package com.adaptris.core.drools;
 
 import com.adaptris.core.AdaptrisComponent;
 import com.adaptris.core.AdaptrisMessage;
+import com.adaptris.core.licensing.LicensedComponent;
 
 /**
  * Handles the transformation of the AdaptrisMessage to Facts used within the
@@ -10,7 +11,7 @@ import com.adaptris.core.AdaptrisMessage;
  * @author lchan
  * @author $Author: lchan $
  */
-public interface Resolver extends AdaptrisComponent {
+public interface Resolver extends AdaptrisComponent, LicensedComponent {
 
   /**
    * Create facts for insertion into the Rule Engine

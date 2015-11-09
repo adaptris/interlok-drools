@@ -10,10 +10,10 @@ import org.drools.event.RuleBaseEventListener;
 import org.drools.event.WorkingMemoryEventListener;
 
 import com.adaptris.core.CoreException;
-import com.adaptris.core.ServiceImp;
+import com.adaptris.core.licensing.License;
+import com.adaptris.core.licensing.License.LicenseType;
+import com.adaptris.core.licensing.LicensedService;
 import com.adaptris.core.util.LifecycleHelper;
-import com.adaptris.util.license.License;
-import com.adaptris.util.license.License.LicenseType;
 
 /**
  * Abstract Entry point into the JBoss Rules Engine.
@@ -25,7 +25,7 @@ import com.adaptris.util.license.License.LicenseType;
  * @author lchan
  * @author $Author: lchan $
  */
-public abstract class RuleServiceImpl extends ServiceImp {
+public abstract class RuleServiceImpl extends LicensedService {
 
   @NotNull
   @Valid
@@ -76,7 +76,7 @@ public abstract class RuleServiceImpl extends ServiceImp {
    * @see com.adaptris.core.AdaptrisComponent#init()
    */
   @Override
-  public final void init() throws CoreException {
+  protected final void initService() throws CoreException {
     if (resolver == null) {
       throw new CoreException("Fact Resolver is null");
     }
@@ -85,7 +85,7 @@ public abstract class RuleServiceImpl extends ServiceImp {
     }
     LifecycleHelper.init(runtimeRuleBase);
     LifecycleHelper.init(resolver);
-    initService();
+    initDroolsService();
   }
 
   /**
@@ -116,22 +116,33 @@ public abstract class RuleServiceImpl extends ServiceImp {
    * @see com.adaptris.core.AdaptrisComponent#close()
    */
   @Override
-  public final void close() {
-    closeService();
+  protected final void closeService() {
+    closeDroolsService();
     LifecycleHelper.close(runtimeRuleBase);
     LifecycleHelper.close(resolver);
   }
 
-  protected abstract void initService() throws CoreException;
+  protected abstract void initDroolsService() throws CoreException;
 
   protected abstract void startService() throws CoreException;
 
   protected abstract void stopService();
 
-  protected abstract void closeService();
+  protected abstract void closeDroolsService();
 
   @Override
-  public final boolean isEnabled(License l) throws CoreException {
+  protected void prepareService() throws CoreException {
+    if (getResolver() != null) {
+      getResolver().prepare();
+    }
+    if (getRuntimeRuleBase() != null) {
+      getRuntimeRuleBase().prepare();
+    }
+  }
+
+
+  @Override
+  public final boolean isEnabled(License l) {
     boolean resolverEnabled = true, ruleBaseEnabled = true;
     if (getResolver() != null) {
       resolverEnabled = getResolver().isEnabled(l);
@@ -143,7 +154,7 @@ public abstract class RuleServiceImpl extends ServiceImp {
         && ruleBaseEnabled && serviceIsEnabled(l);
   }
 
-  protected abstract boolean serviceIsEnabled(License l) throws CoreException;
+  protected abstract boolean serviceIsEnabled(License l);
 
   /**
    * @return the FactResolver
