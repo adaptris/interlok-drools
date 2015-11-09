@@ -1,9 +1,8 @@
 package com.adaptris.core.drools;
 
 import com.adaptris.core.CoreException;
-import com.adaptris.core.LicensedComponent;
-import com.adaptris.util.license.License;
-import com.adaptris.util.license.License.LicenseType;
+import com.adaptris.core.licensing.License;
+import com.adaptris.core.licensing.License.LicenseType;
 
 /**
  * Abstract base class for management of a Drools Session.
@@ -41,11 +40,11 @@ public abstract class SessionManagementStrategyImp implements
   public void stop() {
   }
 
-  /**
-   * @see LicensedComponent#isEnabled(License)
-   */
   @Override
-  public boolean isEnabled(License license) throws CoreException {
+  public void prepare() throws CoreException {}
+
+  @Override
+  public boolean isEnabled(License license) {
     return license.isEnabled(LicenseType.Standard);
   }
 }

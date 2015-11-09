@@ -5,8 +5,8 @@ import org.drools.StatelessSession;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
-import com.adaptris.util.license.License;
-import com.adaptris.util.license.License.LicenseType;
+import com.adaptris.core.licensing.License;
+import com.adaptris.core.licensing.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -43,16 +43,16 @@ public class StatelessRuleService extends RuleServiceImpl {
   }
 
   @Override
-  protected boolean serviceIsEnabled(License l) throws CoreException {
+  protected boolean serviceIsEnabled(License l) {
     return l.isEnabled(LicenseType.Standard);
   }
 
   @Override
-  protected void closeService() {
+  protected void closeDroolsService() {
   }
 
   @Override
-  protected void initService() throws CoreException {
+  protected void initDroolsService() throws CoreException {
   }
 
   @Override
