@@ -10,9 +10,9 @@ import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
+import com.adaptris.core.licensing.License;
+import com.adaptris.core.licensing.License.LicenseType;
 import com.adaptris.core.util.LifecycleHelper;
-import com.adaptris.util.license.License;
-import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 
@@ -68,17 +68,26 @@ public class StatefulRuleFlowService extends RuleServiceImpl {
   }
 
   @Override
-  protected boolean serviceIsEnabled(License l) throws CoreException {
+  protected void prepareService() throws CoreException {
+    super.prepareService();
+    if (getSessionManagementStrategy() != null) {
+      getSessionManagementStrategy().prepare();
+    }
+  }
+
+
+  @Override
+  protected boolean serviceIsEnabled(License l) {
     return l.isEnabled(LicenseType.Standard);
   }
 
   @Override
-  protected void closeService() {
+  protected void closeDroolsService() {
     LifecycleHelper.close(sessionStrategy);
   }
 
   @Override
-  protected void initService() throws CoreException {
+  protected void initDroolsService() throws CoreException {
     LifecycleHelper.init(sessionStrategy);
     if (getRuleFlowName() == null) {
       throw new CoreException("Ruleflow name is null");

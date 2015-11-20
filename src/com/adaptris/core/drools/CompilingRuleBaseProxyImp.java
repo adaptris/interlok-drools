@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
 
 import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
+import com.adaptris.core.licensing.License;
+import com.adaptris.core.licensing.License.LicenseType;
 import com.adaptris.util.URLString;
-import com.adaptris.util.license.License;
-import com.adaptris.util.license.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 /**
@@ -57,13 +57,14 @@ public abstract class CompilingRuleBaseProxyImp implements RuleBaseProxy {
     setRuleFlows(new ArrayList<String>());
   }
 
-  /**
-   *
-   * @see com.adaptris.core.LicensedComponent#isEnabled(License)
-   */
-  public boolean isEnabled(License l) throws CoreException {
-    return l.isEnabled(LicenseType.Standard);
+  @Override
+  public void prepare() throws CoreException {}
+
+  @Override
+  public boolean isEnabled(License license) {
+    return license.isEnabled(LicenseType.Standard);
   }
+
 
   /**
    *
