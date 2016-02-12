@@ -2,6 +2,8 @@ package com.adaptris.core.drools;
 
 import org.drools.StatelessSession;
 
+import com.adaptris.annotation.AdapterComponent;
+import com.adaptris.annotation.ComponentProfile;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
@@ -19,6 +21,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-stateless-rule-service")
+@AdapterComponent
+@ComponentProfile(summary = "Stateless JBoss Rules Engine execution", tag = "service,drools")
 public class StatelessRuleService extends RuleServiceImpl {
 
   public StatelessRuleService() {
