@@ -6,7 +6,9 @@ import javax.validation.constraints.NotNull;
 import org.drools.StatefulSession;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.adaptris.annotation.AdapterComponent;
 import com.adaptris.annotation.AutoPopulated;
+import com.adaptris.annotation.ComponentProfile;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
@@ -26,6 +28,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author $Author: lchan $
  */
 @XStreamAlias("drools-stateful-rule-flow-service")
+@AdapterComponent
+@ComponentProfile(summary = "Stateful JBoss Rules Engine execution using a Ruleflow", tag = "service,drools")
 public class StatefulRuleFlowService extends RuleServiceImpl {
 
   @NotNull
