@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import com.adaptris.annotation.AutoPopulated;
 import com.adaptris.core.CoreException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
 import com.adaptris.util.KeyValuePairSet;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -62,12 +60,6 @@ public class RuleAgentProxy implements RuleBaseProxy {
 
   @Override
   public void prepare() throws CoreException {}
-
-  @Override
-  public boolean isEnabled(License license) {
-    return license.isEnabled(LicenseType.Standard);
-  }
-
 
   /**
    * 

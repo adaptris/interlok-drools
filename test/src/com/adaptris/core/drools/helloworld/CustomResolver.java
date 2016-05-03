@@ -10,8 +10,6 @@ import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
 
 public class CustomResolver implements Resolver {
 
@@ -64,8 +62,4 @@ public class CustomResolver implements Resolver {
   @Override
   public void prepare() throws CoreException {}
 
-  @Override
-  public boolean isEnabled(License license) {
-    return license.isEnabled(LicenseType.Standard);
-  }
 }

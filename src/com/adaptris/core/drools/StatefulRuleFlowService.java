@@ -12,8 +12,6 @@ import com.adaptris.annotation.ComponentProfile;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
 import com.adaptris.core.util.LifecycleHelper;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -72,17 +70,11 @@ public class StatefulRuleFlowService extends RuleServiceImpl {
   }
 
   @Override
-  protected void prepareService() throws CoreException {
-    super.prepareService();
+  public void prepare() throws CoreException {
+    super.prepare();
     if (getSessionManagementStrategy() != null) {
       getSessionManagementStrategy().prepare();
     }
-  }
-
-
-  @Override
-  protected boolean serviceIsEnabled(License l) {
-    return l.isEnabled(LicenseType.Standard);
   }
 
   @Override
