@@ -10,9 +10,7 @@ import org.drools.event.RuleBaseEventListener;
 import org.drools.event.WorkingMemoryEventListener;
 
 import com.adaptris.core.CoreException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
-import com.adaptris.core.licensing.LicensedService;
+import com.adaptris.core.ServiceImp;
 import com.adaptris.core.util.LifecycleHelper;
 
 /**
@@ -25,7 +23,7 @@ import com.adaptris.core.util.LifecycleHelper;
  * @author lchan
  * @author $Author: lchan $
  */
-public abstract class RuleServiceImpl extends LicensedService {
+public abstract class RuleServiceImpl extends ServiceImp {
 
   @NotNull
   @Valid
@@ -131,7 +129,7 @@ public abstract class RuleServiceImpl extends LicensedService {
   protected abstract void closeDroolsService();
 
   @Override
-  protected void prepareService() throws CoreException {
+  public void prepare() throws CoreException {
     if (getResolver() != null) {
       getResolver().prepare();
     }
@@ -139,22 +137,6 @@ public abstract class RuleServiceImpl extends LicensedService {
       getRuntimeRuleBase().prepare();
     }
   }
-
-
-  @Override
-  public final boolean isEnabled(License l) {
-    boolean resolverEnabled = true, ruleBaseEnabled = true;
-    if (getResolver() != null) {
-      resolverEnabled = getResolver().isEnabled(l);
-    }
-    if (getRuntimeRuleBase() != null) {
-      ruleBaseEnabled = getRuntimeRuleBase().isEnabled(l);
-    }
-    return l.isEnabled(LicenseType.Standard) && resolverEnabled
-        && ruleBaseEnabled && serviceIsEnabled(l);
-  }
-
-  protected abstract boolean serviceIsEnabled(License l);
 
   /**
    * @return the FactResolver
