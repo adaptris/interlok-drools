@@ -5,7 +5,6 @@ import org.drools.StatefulSession;
 
 import com.adaptris.core.AdaptrisComponent;
 import com.adaptris.core.AdaptrisMessage;
-import com.adaptris.core.licensing.LicensedComponent;
 
 /**
  * Strategy for managing sessions.
@@ -13,7 +12,7 @@ import com.adaptris.core.licensing.LicensedComponent;
  * @author lchan
  * @author $Author: lchan $
  */
-public interface SessionManagementStrategy extends AdaptrisComponent, LicensedComponent {
+public interface SessionManagementStrategy extends AdaptrisComponent {
 
   /**
    * Get the session from the rulebase based on the strategy in use.

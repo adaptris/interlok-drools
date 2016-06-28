@@ -7,8 +7,6 @@ import com.adaptris.annotation.ComponentProfile;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.ServiceException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -44,11 +42,6 @@ public class StatelessRuleService extends RuleServiceImpl {
     catch (Exception e) {
       throw new ServiceException(e);
     }
-  }
-
-  @Override
-  protected boolean serviceIsEnabled(License l) {
-    return l.isEnabled(LicenseType.Standard);
   }
 
   @Override

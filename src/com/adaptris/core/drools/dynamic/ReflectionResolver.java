@@ -15,8 +15,6 @@ import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.CoreException;
 import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
-import com.adaptris.core.licensing.License;
-import com.adaptris.core.licensing.License.LicenseType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -146,11 +144,6 @@ public class ReflectionResolver implements Resolver {
 
   @Override
   public void prepare() throws CoreException {}
-
-  @Override
-  public boolean isEnabled(License license) {
-    return license.isEnabled(LicenseType.Standard);
-  }
 
   /**
    * @return the toBeanMappers
