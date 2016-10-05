@@ -70,6 +70,7 @@
     <exclude org="asm"/>
     <exclude org="c3p0"/>
     <exclude org="commons-logging"/>
+    <exclude org="org.glassfish.hk2.external"/>
     <exclude org="org.apache.ant" artifact="ant"/>
     <exclude org="org.apache.ant" artifact="ant-launcher"/>
     <exclude org="ant"/>
