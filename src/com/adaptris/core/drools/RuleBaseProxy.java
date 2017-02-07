@@ -2,7 +2,6 @@ package com.adaptris.core.drools;
 
 import org.drools.RuleBase;
 
-import com.adaptris.core.AdaptrisComponent;
 import com.adaptris.core.ComponentLifecycle;
 import com.adaptris.core.ComponentLifecycleExtension;
 

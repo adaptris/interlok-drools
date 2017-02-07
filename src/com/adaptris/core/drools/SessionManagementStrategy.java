@@ -3,7 +3,6 @@ package com.adaptris.core.drools;
 import org.drools.RuleBase;
 import org.drools.StatefulSession;
 
-import com.adaptris.core.AdaptrisComponent;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.ComponentLifecycle;
 import com.adaptris.core.ComponentLifecycleExtension;
