@@ -12,6 +12,8 @@ import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
 
 public class TicketResolver implements Resolver {
+  
+  private String uniqueId;
 
   final Customer platinum = new Customer(Customer.CUSTOMER_PLATINUM,
       Customer.CUSTOMER_PLATINUM);
@@ -71,5 +73,13 @@ public class TicketResolver implements Resolver {
 
   @Override
   public void prepare() throws CoreException {}
+
+  public String getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(String uniqueId) {
+    this.uniqueId = uniqueId;
+  }
 
 }

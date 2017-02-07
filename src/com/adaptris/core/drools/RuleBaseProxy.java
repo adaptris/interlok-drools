@@ -3,6 +3,8 @@ package com.adaptris.core.drools;
 import org.drools.RuleBase;
 
 import com.adaptris.core.AdaptrisComponent;
+import com.adaptris.core.ComponentLifecycle;
+import com.adaptris.core.ComponentLifecycleExtension;
 
 /**
  * Interface for creating RuleBases
@@ -10,7 +12,7 @@ import com.adaptris.core.AdaptrisComponent;
  * @author lchan
  * @author $Author: lchan $
  */
-public interface RuleBaseProxy extends AdaptrisComponent {
+public interface RuleBaseProxy extends ComponentLifecycle, ComponentLifecycleExtension {
 
   /**
    * Get a rulebase for executing the rules.

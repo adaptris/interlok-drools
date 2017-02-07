@@ -12,6 +12,8 @@ import com.adaptris.core.drools.Resolver;
 import com.adaptris.core.drools.RuleException;
 
 public class CustomResolver implements Resolver {
+  
+  private String uniqueId;
 
   public void resolve(Object[] src, AdaptrisMessage result)
       throws RuleException {
@@ -61,5 +63,13 @@ public class CustomResolver implements Resolver {
 
   @Override
   public void prepare() throws CoreException {}
+
+  public String getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(String uniqueId) {
+    this.uniqueId = uniqueId;
+  }
 
 }
