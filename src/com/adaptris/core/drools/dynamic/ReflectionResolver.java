@@ -39,6 +39,8 @@ public class ReflectionResolver implements Resolver {
   @AutoPopulated
   @Valid
   private List<JavabeanMapper> fromBeanMappers;
+  
+  private String uniqueId;
 
   public ReflectionResolver() {
     setToBeanMappers(new ArrayList<JavabeanMapper>());
@@ -183,6 +185,14 @@ public class ReflectionResolver implements Resolver {
 
   public void addFromBeanMapper(JavabeanMapper m) {
     fromBeanMappers.add(m);
+  }
+
+  public String getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(String uniqueId) {
+    this.uniqueId = uniqueId;
   }
 
 }
