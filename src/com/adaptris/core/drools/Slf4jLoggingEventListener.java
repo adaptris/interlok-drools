@@ -13,8 +13,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * Implementation of all the event listener interfaces that simply logs with the specified category using the slf4j interfaces.
  * 
  * @config drools-slf4j-logging-event-listener
- * @author lchan
- * @author $Author: lchan $
  */
 @XStreamAlias("drools-slf4j-logging-event-listener")
 @GenerateBeanInfo
@@ -50,6 +48,7 @@ public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
         log.error(s);
       }
     },
+    @Deprecated
     FATAL {
       @Override
       void log(Logger log, String s) {
@@ -64,17 +63,19 @@ public class Slf4jLoggingEventListener extends LoggingEventListenerImpl {
   }
 
   public Slf4jLoggingEventListener(String category, LoggingLevel level) {
-    super(category, level);
+    this();
+    setCategory(category);
+    setLogLevel(level);
   }
 
   @Override
   protected void log(EventObject e) {
-    LogHandler.valueOf(getLogLevel().name()).log(LoggerFactory.getLogger(getCategory()), e.toString());
+    LogHandler.valueOf(logLevel().name()).log(LoggerFactory.getLogger(category()), e.toString());
   }
 
   @Override
   protected void log(String s) {
-    LogHandler.valueOf(getLogLevel().name()).log(LoggerFactory.getLogger(getCategory()), s);
+    LogHandler.valueOf(logLevel().name()).log(LoggerFactory.getLogger(category()), s);
   }
 
 }
