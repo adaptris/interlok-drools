@@ -1,7 +1,5 @@
 package com.adaptris.core.drools;
 
-import static org.apache.commons.lang.StringUtils.isEmpty;
-
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -41,9 +39,6 @@ import org.drools.event.RuleBaseEventListener;
 import org.drools.event.RuleFlowGroupActivatedEvent;
 import org.drools.event.RuleFlowGroupDeactivatedEvent;
 import org.drools.event.WorkingMemoryEventListener;
-import org.hibernate.validator.constraints.NotBlank;
-
-import com.adaptris.annotation.AutoPopulated;
 
 /**
  * Abstract Implementation of all the event listener interfaces that simply logs to the configured logging system with the specified
@@ -58,22 +53,12 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
     TRACE, DEBUG, INFO, WARN, ERROR, FATAL;
   }
 
-  @AutoPopulated
   private LoggingLevel logLevel;
-  @AutoPopulated
-  @NotBlank
   private String category;
 
   public LoggingEventListenerImpl() {
-    setCategory(this.getClass().getCanonicalName());
-    setLogLevel(LoggingLevel.TRACE);
   }
 
-  public LoggingEventListenerImpl(String category, LoggingLevel level) {
-    this();
-    setCategory(category);
-    setLogLevel(level);
-  }
 
   /**
    * Set the logging category for the underlying logger.
@@ -81,9 +66,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
    * @param s
    */
   public void setCategory(String s) {
-    if (!isEmpty(s)) {
-      category = s;
-    }
+    category = s;
   }
 
   /**
@@ -93,6 +76,10 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
    */
   public String getCategory() {
     return category;
+  }
+
+  protected String category() {
+    return getCategory() != null ? getCategory() : this.getClass().getCanonicalName();
   }
 
   /**
@@ -110,10 +97,11 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
    * @param s the log level, one of "TRACE", "DEBUG", "INFO" "WARN", "ERROR", "FATAL". The default is "TRACE"
    */
   public void setLogLevel(LoggingLevel s) {
-    if (s == null) {
-      throw new IllegalArgumentException("Null Loglevel");
-    }
     logLevel = s;
+  }
+
+  protected LoggingLevel logLevel() {
+    return getLogLevel() != null ? getLogLevel() : LoggingLevel.TRACE;
   }
 
   protected abstract void log(EventObject e);
