@@ -96,7 +96,7 @@ dependencies {
   compile ("com.adaptris:interlok-core:$interlokCoreVersion") { changing= true}
   compile ("com.adaptris:interlok-common:$interlokCoreVersion") { changing= true}
   compile ("com.thoughtworks.xstream:xstream:1.4.10") { changing= true}
-  compile ("org.drools:drools-compiler:5.6.0.Final") {
+  compile ("org.drools:drools-compiler:7.10.0.Final") {
     exclude group: 'org.apache.poi', module:"poi"
     exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
