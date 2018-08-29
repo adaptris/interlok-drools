@@ -1,10 +1,10 @@
-junit.SampleConfigCase.baseDir=${example-xml.build.dir}
-junit.DroolsServiceExamples.baseDir=${junit.SampleConfigCase.baseDir}
+SampleConfigCase.baseDir=@BUILD_DIR@/examples
+DroolsServiceExamples.baseDir=@BUILD_DIR@/examples
 
-junit.drools.HelloWorld.drl.url=file:///${basedir}/resources/tests/HelloWorld.drl
-junit.drools.HelloWorld.drl.file=${basedir}/resources/tests/HelloWorld.drl
+drools.HelloWorld.drl.url=file:///@BASE_DIR@/src/test/resources/HelloWorld.drl
+drools.HelloWorld.drl.file=@BASE_DIR@/src/test/resources/HelloWorld.drl
 
 
-junit.drools.Ticketing.drl.url=file:///${basedir}/resources/tests/TroubleTicketWithDSL.dslr
-junit.drools.Ticketing.drl.file=${basedir}/resources/tests/TroubleTicket.drl
-junit.drools.Ticketing.drl.dsl.url=file:///${basedir}/resources/tests/ticketing.dsl
+drools.Ticketing.drl.url=file:///@BASE_DIR@/src/test/resources/TroubleTicketWithDSL.dslr
+drools.Ticketing.drl.file=@BASE_DIR@/src/test/resources/TroubleTicket.drl
+drools.Ticketing.drl.dsl.url=file:///@BASE_DIR@/src/test/resources/ticketing.dsl
