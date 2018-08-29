@@ -97,19 +97,23 @@ dependencies {
   compile ("com.adaptris:interlok-common:$interlokCoreVersion") { changing= true}
   compile ("com.thoughtworks.xstream:xstream:1.4.10") { changing= true}
   compile ("org.drools:drools-compiler:5.6.0.Final") {
-    exclude group: 'org.apache.poi'
+    exclude group: 'org.apache.poi', module:"poi"
+    exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
   }
   compile ("org.drools:drools-core:5.6.0.Final") {
-    exclude group: 'org.apache.poi'
+    exclude group: 'org.apache.poi', module:"poi"
+    exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
   }
   compile ("org.drools:drools-jsr94:5.6.0.Final") {
-    exclude group: 'org.apache.poi'
+    exclude group: 'org.apache.poi', module:"poi"
+    exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
   }
   compile ("org.drools:drools-decisiontables:5.6.0.Final") {
-    exclude group: 'org.apache.poi'
+    exclude group: 'org.apache.poi', module:"poi"
+    exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
   }
 
