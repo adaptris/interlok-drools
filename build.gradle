@@ -95,7 +95,7 @@ configurations.all {
 dependencies {
   compile ("com.adaptris:interlok-core:$interlokCoreVersion") { changing= true}
   compile ("com.adaptris:interlok-common:$interlokCoreVersion") { changing= true}
-  compile ("com.thoughtworks.xstream:xstream:1.4.10") { changing= true}
+  compile ("com.thoughtworks.xstream:xstream:1.4.10")
   compile ("org.drools:drools-compiler:5.6.0.Final") {
     exclude group: 'org.apache.poi', module:"poi"
     exclude group: 'org.apache.poi', module:"poi-ooxml"
@@ -120,6 +120,8 @@ dependencies {
   compile ("org.antlr:antlr-runtime:3.3") { transitive= false}
   compile ("org.antlr:antlr:3.3") { transitive= false}
   compile "org.ow2.asm:asm-all:4.1", optional
+  compile "org.apache.poi:poi:3.17", optional
+  compile "org.apache.poi:poi-ooxml:3.17", optional
 
   compile ("org.slf4j:slf4j-api:$slf4jVersion")
 
