@@ -106,7 +106,7 @@ dependencies {
     exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
   }
-  compile ("org.drools:drools-jsr94:5.6.0.Final") {
+  compile ("org.drools:drools-jsr94:6.5.0.Final-redhat-2") {
     exclude group: 'org.apache.poi', module:"poi"
     exclude group: 'org.apache.poi', module:"poi-ooxml"
     exclude group: 'com.thoughtworks.xstream', module: 'xstream'
