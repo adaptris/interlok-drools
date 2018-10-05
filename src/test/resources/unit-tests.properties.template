@@ -1,0 +1,10 @@
+SampleConfigCase.baseDir=@BUILD_DIR@/examples
+DroolsServiceExamples.baseDir=@BUILD_DIR@/examples
+
+drools.HelloWorld.drl.url=file:///@BASE_DIR@/src/test/resources/HelloWorld.drl
+drools.HelloWorld.drl.file=@BASE_DIR@/src/test/resources/HelloWorld.drl
+
+
+drools.Ticketing.drl.url=file:///@BASE_DIR@/src/test/resources/TroubleTicketWithDSL.dslr
+drools.Ticketing.drl.file=@BASE_DIR@/src/test/resources/TroubleTicket.drl
+drools.Ticketing.drl.dsl.url=file:///@BASE_DIR@/src/test/resources/ticketing.dsl
