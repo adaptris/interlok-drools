@@ -285,6 +285,7 @@ publishing {
         properties.appendNode("target", "3.8.0+")
         properties.appendNode("tags", "drools,jboss rules")
         properties.appendNode("license", "false")
+        properties.appendNode("deprecated", "Consider migrating to interlok-kie; your existing rules may already be compatible with drools-7.10+")
       }
     }
   }
