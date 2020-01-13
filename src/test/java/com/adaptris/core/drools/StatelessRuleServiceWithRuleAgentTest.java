@@ -16,8 +16,8 @@ import com.adaptris.util.KeyValuePair;
 
 public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
 
-  public StatelessRuleServiceWithRuleAgentTest(java.lang.String testName) {
-    super(testName);
+  public StatelessRuleServiceWithRuleAgentTest() {
+    super();
   }
 
   @Override
@@ -60,5 +60,10 @@ public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
     proxy.getRuleAgentProperties().addKeyValuePair(new KeyValuePair("name", "HelloWorld"));
     service.setRuntimeRuleBase(proxy);
     return service;
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }

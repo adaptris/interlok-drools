@@ -17,10 +17,9 @@ import com.adaptris.util.KeyValuePair;
 public class StatefulRuleServiceWithRuleAgentTest extends
     StatefulRuleServiceWithCompilerTest {
 
-  public StatefulRuleServiceWithRuleAgentTest(java.lang.String testName) {
-    super(testName);
+  public StatefulRuleServiceWithRuleAgentTest() {
+    super();
   }
-
 
   @Override
   protected Object retrieveObjectForSampleConfig() {
@@ -95,5 +94,10 @@ public class StatefulRuleServiceWithRuleAgentTest extends
         new KeyValuePair("name", "TroubleTicket"));
     service.setRuntimeRuleBase(proxy);
     return service;
+  }  
+  
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }  
 }

@@ -10,8 +10,8 @@ import com.adaptris.core.drools.helloworld.CustomResolver;
 
 public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
 
-  public StatelessRuleServiceWithCompilerTest(java.lang.String testName) {
-    super(testName);
+  public StatelessRuleServiceWithCompilerTest() {
+    super();
   }
 
   @Override
@@ -41,5 +41,10 @@ public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
   @Override
   protected String createBaseFileName(Object object) {
     return object.getClass().getName() + "-WithCompiler";
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }

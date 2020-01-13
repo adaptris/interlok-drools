@@ -1,5 +1,7 @@
 package com.adaptris.core.drools;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.AdaptrisMessageFactory;
 import com.adaptris.core.Service;
@@ -24,14 +26,11 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
   private static final String XML_DOC = XML_HEADER + LINE_SEP + "<root>" + LINE_SEP + "<document>" + HELLO_WORLD + "</document>"
       + LINE_SEP + "</root>" + LINE_SEP;
 
-  public BaseRuleServiceCase(String name) {
-    super(name);
+  public BaseRuleServiceCase() {
+    super();
   }
 
-  @Override
-  protected void setUp() throws Exception {
-  }
-
+  @Test
   public void testWithCustomMediator() throws Exception {
     RuleServiceImpl service = createHelloWorldRule();
     service.setResolver(new CustomResolver());
@@ -40,6 +39,7 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
     stop(service);
   }
 
+  @Test
   public void testWithDynamicResolver() throws Exception {
     RuleServiceImpl service = createHelloWorldRule();
     ReflectionResolver bean = new ReflectionResolver();

@@ -10,12 +10,8 @@ import com.adaptris.core.drools.helloworld.CustomResolver;
 
 public class RuleFlowServiceTest extends DroolsServiceExample {
 
-  public RuleFlowServiceTest(java.lang.String testName) {
-    super(testName);
-  }
-
-  @Override
-  protected void setUp() throws Exception {
+  public RuleFlowServiceTest() {
+    super();
   }
 
   @Override
@@ -34,5 +30,10 @@ public class RuleFlowServiceTest extends DroolsServiceExample {
   @Override
   protected String createBaseFileName(Object object) {
     return  object.getClass().getName() + "-WithCompiler";
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }

@@ -7,7 +7,10 @@
 package com.adaptris.core.drools.dynamic;
 
 import static com.adaptris.core.util.XmlHelper.createXmlUtils;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import org.junit.Before;
+import org.junit.Test;
 import com.adaptris.core.AdaptrisMarshaller;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.AdaptrisMessageFactory;
@@ -33,15 +36,16 @@ public class TestJavabeanMapper extends BaseCase {
 
   private SimpleBean testBean;
 
-  public TestJavabeanMapper(String s) {
-    super(s);
+  public TestJavabeanMapper() {
+    super();
   }
 
-  @Override
+  @Before
   public void setUp() {
     testBean = new SimpleBean();
   }
 
+  @Test
   public void testConfiguredField() throws Exception {
     ConfiguredFieldMapper cf = new ConfiguredFieldMapper(STRING_FIELD,
         new SimpleType(SimpleType.Type.STRING), STRING_VALUE);
@@ -58,6 +62,7 @@ public class TestJavabeanMapper extends BaseCase {
     }
   }
 
+  @Test
   public void testMessageIdMapper() throws Exception {
     MessageIdMapper cf = new MessageIdMapper(STRING_FIELD, new SimpleType(
         SimpleType.Type.STRING));
@@ -70,6 +75,7 @@ public class TestJavabeanMapper extends BaseCase {
     assertEquals(msg.getUniqueId(), msg2.getUniqueId());
   }
 
+  @Test
   public void testPayloadMapper() throws Exception {
     PayloadMapper mapper = new PayloadMapper(STRING_FIELD, new SimpleType(
         SimpleType.Type.STRING));
@@ -82,6 +88,7 @@ public class TestJavabeanMapper extends BaseCase {
     assertEquals(msg.getStringPayload(), msg2.getStringPayload());
   }
 
+  @Test
   public void testMetadataMapper() throws Exception {
     MetadataFieldMapper mapper = new MetadataFieldMapper(STRING_FIELD,
         new SimpleType(SimpleType.Type.STRING), "booleanField");
@@ -94,6 +101,7 @@ public class TestJavabeanMapper extends BaseCase {
     assertEquals(TRUE_VALUE, msg2.getMetadataValue("booleanField"));
   }
 
+  @Test
   public void testXpathFieldMapper() throws Exception {
     XpathFieldMapper cf = new XpathFieldMapper(STRING_FIELD, new SimpleType(
         SimpleType.Type.STRING), XPATH_SAMPLE);
@@ -106,6 +114,7 @@ public class TestJavabeanMapper extends BaseCase {
     assertEquals(GOODBYE, xmlUtils.getSingleTextItem(XPATH_SAMPLE));
   }
 
+  @Test
   public void testConfiguredFieldObjectMapper() throws Exception {
     AdaptrisMarshaller cm = DefaultMarshaller.getDefaultMarshaller();
     FailoverJdbcConnection dbConn = new FailoverJdbcConnection();
@@ -123,5 +132,10 @@ public class TestJavabeanMapper extends BaseCase {
         .newMessage(HELLO_WORLD_XML);
     msg.addMetadata(new MetadataElement("booleanField", TRUE_VALUE));
     return msg;
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }
