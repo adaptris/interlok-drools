@@ -22,9 +22,6 @@ public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     compiler.addRuleSource("http://MyServer.com/HelloWorld.drl");
     compiler.addRuleSource("http://MyServer.com/HelloWorld2.drl");
     service.setRuntimeRuleBase(compiler);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }
 

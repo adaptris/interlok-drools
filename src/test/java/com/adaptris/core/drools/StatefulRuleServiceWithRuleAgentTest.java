@@ -48,10 +48,6 @@ public class StatefulRuleServiceWithRuleAgentTest extends
         .addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(
             SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
     srv.setResolver(mediator);
-    srv.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    srv.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    srv.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
-
     return srv;
   }
 

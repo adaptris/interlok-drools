@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.EventObject;
-
+import org.apache.commons.lang3.ObjectUtils;
 import org.drools.WorkingMemory;
 import org.drools.common.RuleFlowGroupListener;
 import org.drools.event.ActivationCancelledEvent;
@@ -79,7 +79,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
   }
 
   protected String category() {
-    return getCategory() != null ? getCategory() : this.getClass().getCanonicalName();
+    return ObjectUtils.defaultIfNull(getCategory(), this.getClass().getCanonicalName());
   }
 
   /**
@@ -101,7 +101,7 @@ public abstract class LoggingEventListenerImpl implements RuleBaseEventListener,
   }
 
   protected LoggingLevel logLevel() {
-    return getLogLevel() != null ? getLogLevel() : LoggingLevel.TRACE;
+    return ObjectUtils.defaultIfNull(getLogLevel(), LoggingLevel.TRACE);
   }
 
   protected abstract void log(EventObject e);

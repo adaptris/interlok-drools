@@ -78,9 +78,6 @@ public abstract class BaseRuleServiceCase extends DroolsServiceExample {
   }
 
   protected static void start(RuleServiceImpl service) throws Exception {
-    service.setAgendaEventListener(new Slf4jLoggingEventListener());
-    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     LifecycleHelper.init(service);
     LifecycleHelper.start(service);
   }
