@@ -17,10 +17,9 @@ import com.adaptris.util.KeyValuePair;
 public class StatefulRuleServiceWithRuleAgentTest extends
     StatefulRuleServiceWithCompilerTest {
 
-  public StatefulRuleServiceWithRuleAgentTest(java.lang.String testName) {
-    super(testName);
+  public StatefulRuleServiceWithRuleAgentTest() {
+    super();
   }
-
 
   @Override
   protected Object retrieveObjectForSampleConfig() {
@@ -49,10 +48,6 @@ public class StatefulRuleServiceWithRuleAgentTest extends
         .addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(
             SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
     srv.setResolver(mediator);
-    srv.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    srv.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    srv.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
-
     return srv;
   }
 
@@ -95,5 +90,10 @@ public class StatefulRuleServiceWithRuleAgentTest extends
         new KeyValuePair("name", "TroubleTicket"));
     service.setRuntimeRuleBase(proxy);
     return service;
+  }  
+  
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }  
 }

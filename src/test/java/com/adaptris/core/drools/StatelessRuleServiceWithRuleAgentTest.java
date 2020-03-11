@@ -16,8 +16,8 @@ import com.adaptris.util.KeyValuePair;
 
 public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
 
-  public StatelessRuleServiceWithRuleAgentTest(java.lang.String testName) {
-    super(testName);
+  public StatelessRuleServiceWithRuleAgentTest() {
+    super();
   }
 
   @Override
@@ -37,9 +37,6 @@ public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
     bean.addToBeanMapper(new ConfiguredFieldMapper("Message", new SimpleType(SimpleType.Type.STRING), "Hello World"));
     bean.addToBeanMapper(new ConfiguredFieldMapper("Status", new SimpleType(SimpleType.Type.INTEGER), String.valueOf(Message.HELLO)));
     service.setResolver(bean);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }
 
@@ -60,5 +57,10 @@ public class StatelessRuleServiceWithRuleAgentTest extends BaseRuleServiceCase {
     proxy.getRuleAgentProperties().addKeyValuePair(new KeyValuePair("name", "HelloWorld"));
     service.setRuntimeRuleBase(proxy);
     return service;
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }

@@ -6,8 +6,10 @@
  */
 package com.adaptris.core.drools;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.drools.StatefulSession;
-
+import org.junit.Test;
 import com.adaptris.core.AdaptrisMessage;
 import com.adaptris.core.AdaptrisMessageFactory;
 import com.adaptris.core.drools.helloworld.CustomResolver;
@@ -20,14 +22,11 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
 
   private static final String METADATA_KEY = "junit.drools.dispose";
 
-  public StatefulRuleServiceWithCompilerTest(java.lang.String testName) {
-    super(testName);
+  public StatefulRuleServiceWithCompilerTest() {
+    super();
   }
 
-  @Override
-  protected void setUp() throws Exception {
-  }
-
+  @Test
   public void testTicketingRules() throws Exception {
     StatefulRuleService s1 = (StatefulRuleService) createTicketingRules();
     s1.setSessionManagementStrategy(new PerpetualSessionStrategy());
@@ -45,6 +44,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     stop(s1);
   }
 
+  @Test
   public void testWithPerMessageStrategy() throws Exception {
     StatefulRuleService s1 = (StatefulRuleService) createHelloWorldRule();
     PerMessageSessionStrategy strategy = new PerMessageSessionStrategy();
@@ -59,6 +59,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     assertTrue("Sessions should be different", (session1 != session2));
   }
 
+  @Test
   public void testWithPerpertualStrategy() throws Exception {
     StatefulRuleService s1 = (StatefulRuleService) createHelloWorldRule();
     PerpetualSessionStrategy strategy = new PerpetualSessionStrategy();
@@ -73,6 +74,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     assertTrue("Sessions should not be different", (session1 == session2));
   }
 
+  @Test
   public void testWithTimedStrategy() throws Exception {
     StatefulRuleService s1 = (StatefulRuleService) createHelloWorldRule();
     TimedSessionStrategy strategy = new TimedSessionStrategy(2);
@@ -88,6 +90,7 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     assertTrue("Sessions should be different", (session1 != session2));
   }
 
+  @Test
   public void testWithMetadataStrategy() throws Exception {
     StatefulRuleService s1 = (StatefulRuleService) createHelloWorldRule();
     MetadataSessionStrategy strategy = new MetadataSessionStrategy(METADATA_KEY);
@@ -117,9 +120,6 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     compiler.getRuleSources().addKeyValuePair(
         new KeyValuePair("http://myserver.com/myDomainRuleFile2", "http://myserver.com/MyDomainSpecificLanguageFile"));
     service.setRuntimeRuleBase(compiler);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }
 
@@ -146,5 +146,10 @@ public class StatefulRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     compiler.getRuleSources().addKeyValuePair(new KeyValuePair(drlFile, dslFile));
     service.setRuntimeRuleBase(compiler);
     return service;
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }

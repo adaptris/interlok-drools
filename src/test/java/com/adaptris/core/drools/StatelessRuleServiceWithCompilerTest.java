@@ -10,8 +10,8 @@ import com.adaptris.core.drools.helloworld.CustomResolver;
 
 public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
 
-  public StatelessRuleServiceWithCompilerTest(java.lang.String testName) {
-    super(testName);
+  public StatelessRuleServiceWithCompilerTest() {
+    super();
   }
 
   @Override
@@ -22,9 +22,6 @@ public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
     compiler.addRuleSource("http://MyServer.com/HelloWorld.drl");
     compiler.addRuleSource("http://MyServer.com/HelloWorld2.drl");
     service.setRuntimeRuleBase(compiler);
-    service.setAgendaEventListener(new Slf4jLoggingEventListener("my.category", LoggingEventListenerImpl.LoggingLevel.INFO));
-    service.setRuleBaseEventListener(new Slf4jLoggingEventListener());
-    service.setWorkingMemoryEventListener(new Slf4jLoggingEventListener());
     return service;
   }
 
@@ -41,5 +38,10 @@ public class StatelessRuleServiceWithCompilerTest extends BaseRuleServiceCase {
   @Override
   protected String createBaseFileName(Object object) {
     return object.getClass().getName() + "-WithCompiler";
+  }
+
+  @Override
+  public boolean isAnnotatedForJunit4() {
+    return true;
   }
 }
